@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.lsheep</groupId>
+		<artifactId>lsheep-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>lsheep-customer</artifactId>
+	<packaging>pom</packaging>
+
+	<name>lsheep-customer</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-database</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>lsheep-customer-web</module>
+		<module>lsheep-customer-restful</module>
+		<module>lsheep-customer-client</module>
+		<module>lsheep-customer-database</module>
+	</modules>
+</project>
