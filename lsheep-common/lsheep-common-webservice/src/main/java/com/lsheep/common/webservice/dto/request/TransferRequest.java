@@ -1,11 +1,11 @@
-package com.lsheep.common.core.webservice.dto.request;
+package com.lsheep.common.webservice.dto.request;
 
 public class TransferRequest<Q> {
 
-	private final TransferHeader header = new TransferHeader();
+	private final RequestHeader header = new RequestHeader();
 	private Q model;
 
-	public TransferHeader getHeader() {
+	public RequestHeader header() {
 		return header;
 	}
 

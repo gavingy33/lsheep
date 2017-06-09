@@ -21,5 +21,6 @@
 	<modules>
 		<module>lsheep-common-core</module>
 		<module>lsheep-common-database</module>
+		<module>lsheep-common-webservice</module>
 	</modules>
 </project>

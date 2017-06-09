@@ -14,7 +14,12 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-customer-client</artifactId>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>lsheep-customer-web</finalName>
 	</build>

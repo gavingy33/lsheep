@@ -1,10 +1,10 @@
-package com.lsheep.common.core.webservice.dto.request;
+package com.lsheep.common.webservice.dto.request;
 
 import java.util.Date;
 
-public class TransferHeader {
+public class RequestHeader {
 
-	private Date timestamp;
+	private Date timestamp = new Date();
 
 	public Date getTimestamp() {
 		return timestamp;

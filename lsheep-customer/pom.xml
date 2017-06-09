@@ -17,6 +17,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-common-core</artifactId>
 		</dependency>
 		<dependency>
@@ -25,8 +30,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-test</artifactId>
-			<scope>test</scope>
+			<artifactId>lsheep-common-webservice</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -92,6 +92,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-common-webservice</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-common-database</artifactId>
 				<version>1.0.0</version>
 			</dependency>

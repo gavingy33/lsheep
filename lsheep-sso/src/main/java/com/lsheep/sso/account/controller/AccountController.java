@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lsheep.common.core.restful.constant.StatusCode;
 import com.lsheep.common.core.restful.dto.response.ResponseHeader;
 import com.lsheep.common.core.restful.dto.response.RestResponse;
-import com.lsheep.common.core.webservice.dto.request.TransferRequest;
-import com.lsheep.common.core.webservice.dto.response.TransferResponse;
+import com.lsheep.common.webservice.dto.request.TransferRequest;
+import com.lsheep.common.webservice.dto.response.TransferResponse;
 import com.lsheep.customer.client.account.dto.request.LoginRequestDto;
 import com.lsheep.customer.client.account.dto.response.CustomerDto;
 import com.lsheep.customer.client.account.dto.response.LoginResponseDto;
@@ -44,7 +44,7 @@ public class AccountController {
 			TransferResponse<LoginResponseDto> transferResponse = accountService.login(transferRequest);
 
 			ResponseHeader responseHeader = restResponse.getHeader();
-			if (!transferResponse.getHeader().success()) {
+			if (!transferResponse.header().success()) {
 				responseHeader.setStatusCode(StatusCode.OK);
 				return restResponse;
 			}

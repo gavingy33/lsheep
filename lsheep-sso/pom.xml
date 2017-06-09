@@ -23,6 +23,10 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-logger</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-webservice</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

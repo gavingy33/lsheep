@@ -1,11 +1,11 @@
-package com.lsheep.common.core.webservice.dto.response;
+package com.lsheep.common.webservice.dto.response;
 
 public class TransferResponse<S> {
 
-	private final TransferHeader header = new TransferHeader();
+	private final ResponseHeader header = new ResponseHeader();
 	private S model;
 
-	public TransferHeader getHeader() {
+	public ResponseHeader header() {
 		return header;
 	}
 
