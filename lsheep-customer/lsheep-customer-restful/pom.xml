@@ -19,6 +19,6 @@
 	</dependencies>
 	<build>
 
-		<finalName>lsheep-customer-restful</finalName>
+		<finalName>customer-restful</finalName>
 	</build>
 </project>

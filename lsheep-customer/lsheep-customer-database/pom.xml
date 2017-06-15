@@ -16,7 +16,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-logger</artifactId>
+			<artifactId>lsheep-common-database</artifactId>
 		</dependency>
 	</dependencies>
 

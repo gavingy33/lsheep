@@ -41,6 +41,12 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table schema="lsheep_customer" tableName="S_CUSTOMER" />
+		<!-- <table schema="lsheep_customer" tableName="S_CUSTOMER" /> -->
+
+		<table schema="lsheep_customer" tableName="S_POSITION">
+			<generatedKey column="POSITION_ID" sqlStatement="MySql"
+				identity="true" />
+		</table>
+
 	</context>
 </generatorConfiguration>

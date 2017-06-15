@@ -22,17 +22,27 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-common-core</artifactId>
+			<artifactId>lsheep-logger</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-common-database</artifactId>
+			<artifactId>lsheep-common-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-common-webservice</artifactId>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-customer-database</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<modules>
 		<module>lsheep-customer-web</module>

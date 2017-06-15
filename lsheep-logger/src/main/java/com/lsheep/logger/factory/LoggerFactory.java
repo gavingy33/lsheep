@@ -6,13 +6,12 @@ import com.lsheep.logger.LoggerConfig;
 import com.lsheep.logger.LoggerConfig.LoggerType;
 import com.lsheep.logger.log4j.Log4jLogger;
 
-public class LoggerFactory {
+public abstract class LoggerFactory {
 
 	private static LoggerConfig loggerConfig;
 
 	private static void initBinder() {
-		if (loggerConfig != null)
-			return;
+		if (loggerConfig != null) return;
 		loggerConfig = SpringContext.getBean("loggerConfig", LoggerConfig.class);
 		if (loggerConfig == null) {
 			loggerConfig = new LoggerConfig();
