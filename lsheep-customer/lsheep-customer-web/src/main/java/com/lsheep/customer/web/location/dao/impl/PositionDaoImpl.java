@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import com.lsheep.common.core.base.dao.impl.BaseDaoImpl;
 import com.lsheep.customer.database.mapper.SPositionMapper;
 import com.lsheep.customer.database.model.SPosition;
 import com.lsheep.customer.web.location.dao.PositionDao;
 
+@Repository
 public class PositionDaoImpl extends BaseDaoImpl implements PositionDao {
 
 	@Resource
@@ -19,6 +22,7 @@ public class PositionDaoImpl extends BaseDaoImpl implements PositionDao {
 	public void saveSPosition(SPosition sPosition) {
 		sPosition.setCreateDate(new Date());
 		sPosition.setModifyDate(new Date());
+		sPosition.setDeleted(false);
 		sPositionMapper.insertSelective(sPosition);
 	}
 

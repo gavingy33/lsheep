@@ -1,41 +1,49 @@
 package com.lsheep.common.webservice.dto.response;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+public class TransferResponse<T> {
 
-public class TransferResponse<S> {
+	private ResponseHeader header = new ResponseHeader();
+	private T model;
 
-	private final ResponseHeader header = new ResponseHeader();
-	private S model = newInstance();
+	public TransferResponse() {
+	}
+
+	public TransferResponse(Class<T> clazz) {
+		T model = null;
+		try {
+			model = clazz.newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		this.model = model;
+	}
 
 	public ResponseHeader header() {
 		return header;
 	}
 
-	public S getModel() {
+	public T model() {
 		return model;
 	}
 
-	public void setModel(S model) {
+	public ResponseHeader getHeader() {
+		return header;
+	}
+
+	public void setHeader(ResponseHeader header) {
+		this.header = header;
+	}
+
+	public T getModel() {
+		return model;
+	}
+
+	public void setModel(T model) {
 		this.model = model;
 	}
 
-	private S newInstance() {
-		S instance = null;
-		try {
-			Type type = getClass().getGenericSuperclass();
-			Type[] trueType = ((ParameterizedType) type).getActualTypeArguments();
-			@SuppressWarnings("unchecked")
-			Class<S> entityClass = (Class<S>) trueType[0];
-			instance = entityClass.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return instance;
-	}
-
 	public void failure(Exception e) {
-
+		e.printStackTrace();
 	}
 
 }

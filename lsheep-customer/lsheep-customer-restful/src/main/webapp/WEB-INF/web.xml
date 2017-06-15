@@ -8,6 +8,15 @@
 		<param-value>classpath:log4j2.xml</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:/core/applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>web</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -34,5 +43,5 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
-	<display-name>lsheep-customer-restful</display-name>
+	<display-name>customer-restful</display-name>
 </web-app>

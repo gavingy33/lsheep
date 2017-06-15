@@ -20,7 +20,7 @@
 	</bean>
 
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.lsheep.customer" />
+		<property name="basePackage" value="com.lsheep.**.database.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -28,7 +28,5 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-	<context:component-scan base-package="com.lsheep.common.database" />
 
 </beans>

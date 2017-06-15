@@ -25,6 +25,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>lsheep-customer-web</finalName>
+		<finalName>customer-web</finalName>
 	</build>
 </project>

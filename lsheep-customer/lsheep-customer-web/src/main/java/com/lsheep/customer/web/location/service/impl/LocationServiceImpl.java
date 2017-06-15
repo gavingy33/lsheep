@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.lsheep.common.core.base.service.impl.BaseServiceImpl;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
 import com.lsheep.customer.client.location.dto.request.LocationDto;
@@ -15,16 +16,16 @@ import com.lsheep.customer.database.model.SPosition;
 import com.lsheep.customer.web.location.bo.PositionBo;
 
 @Service
-public class LocationServiceImpl implements LocationService {
+public class LocationServiceImpl extends BaseServiceImpl implements LocationService {
 
 	@Resource
 	private PositionBo positionBo;
 
 	@Override
 	public TransferResponse<SavePositionResDto> savePosition(TransferRequest<SavePositionReqDto> request) {
-		TransferResponse<SavePositionResDto> response = new TransferResponse<>();
+		TransferResponse<SavePositionResDto> response = new TransferResponse<>(SavePositionResDto.class);
 		try {
-			SavePositionReqDto savePositionReqDto = request.getModel();
+			SavePositionReqDto savePositionReqDto = request.model();
 
 			SPosition sPosition = new SPosition();
 			LocationDto locationDto = savePositionReqDto.getLocationDto();

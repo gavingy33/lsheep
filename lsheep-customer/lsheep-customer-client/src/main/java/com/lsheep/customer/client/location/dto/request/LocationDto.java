@@ -11,8 +11,8 @@ public class LocationDto {
 	private String city;
 	private String district;
 	private String addr;
-	private BigDecimal lat;
-	private BigDecimal lng;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private Integer accuracy;
 
 	public String getModule() {
@@ -71,20 +71,20 @@ public class LocationDto {
 		this.addr = addr;
 	}
 
-	public BigDecimal getLat() {
-		return lat;
+	public BigDecimal getLatitude() {
+		return latitude;
 	}
 
-	public void setLat(BigDecimal lat) {
-		this.lat = lat;
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
 	}
 
-	public BigDecimal getLng() {
-		return lng;
+	public BigDecimal getLongitude() {
+		return longitude;
 	}
 
-	public void setLng(BigDecimal lng) {
-		this.lng = lng;
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 
 	public Integer getAccuracy() {

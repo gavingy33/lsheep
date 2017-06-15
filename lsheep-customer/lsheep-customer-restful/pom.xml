@@ -16,9 +16,13 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-customer-client</artifactId>
+		</dependency>
 	</dependencies>
-	<build>
 
+	<build>
 		<finalName>customer-restful</finalName>
 	</build>
 </project>

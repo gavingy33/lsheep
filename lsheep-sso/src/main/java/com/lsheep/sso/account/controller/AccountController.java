@@ -38,9 +38,7 @@ public class AccountController {
 			@ModelAttribute LoginModel loginModel) {
 		RestResponse<CustomerDto> restResponse = new RestResponse<>();
 		try {
-			TransferRequest<LoginRequestDto> transferRequest = new TransferRequest<>();
-			LoginRequestDto loginRequestDto = new LoginRequestDto();
-			transferRequest.setModel(loginRequestDto);
+			TransferRequest<LoginRequestDto> transferRequest = new TransferRequest<>(LoginRequestDto.class);
 			TransferResponse<LoginResponseDto> transferResponse = accountService.login(transferRequest);
 
 			ResponseHeader responseHeader = restResponse.getHeader();
@@ -48,7 +46,7 @@ public class AccountController {
 				responseHeader.setStatusCode(StatusCode.OK);
 				return restResponse;
 			}
-			restResponse.setBody(transferResponse.getModel().getCustomerDto());
+			restResponse.setBody(transferResponse.model().getCustomerDto());
 		} catch (Exception e) {
 			logger.error("", e);
 			restResponse.failure(e);
