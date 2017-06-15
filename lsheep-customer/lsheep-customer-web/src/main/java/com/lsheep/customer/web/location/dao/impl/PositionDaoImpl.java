@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.lsheep.common.database.dao.impl.BaseDaoImpl;
+import com.lsheep.common.core.base.dao.impl.BaseDaoImpl;
 import com.lsheep.customer.database.mapper.SPositionMapper;
 import com.lsheep.customer.database.model.SPosition;
 import com.lsheep.customer.web.location.dao.PositionDao;

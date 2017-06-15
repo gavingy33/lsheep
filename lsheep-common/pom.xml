@@ -16,10 +16,7 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-logger</artifactId>
-		</dependency>
+
 	</dependencies>
 
 	<modules>

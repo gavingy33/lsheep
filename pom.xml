@@ -102,11 +102,6 @@
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
-				<artifactId>lsheep-logger</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-customer-client</artifactId>
 				<version>1.0.0</version>
 			</dependency>
@@ -115,7 +110,6 @@
 
 	<modules>
 		<module>lsheep-common</module>
-		<module>lsheep-logger</module>
 		<module>lsheep-middleware</module>
 		<module>lsheep-test</module>
 		<module>lsheep-customer</module>

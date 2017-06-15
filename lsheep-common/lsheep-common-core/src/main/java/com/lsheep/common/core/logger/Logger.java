@@ -1,4 +1,4 @@
-package com.lsheep.logger;
+package com.lsheep.common.core.logger;
 
 public interface Logger {
 

@@ -1,8 +1,8 @@
-package com.lsheep.logger.log4j;
+package com.lsheep.common.core.logger.log4j;
 
 import org.apache.logging.log4j.LogManager;
 
-import com.lsheep.logger.Logger;
+import com.lsheep.common.core.logger.Logger;
 
 public class Log4jLogger implements Logger {
 
