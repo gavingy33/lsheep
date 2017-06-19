@@ -30,6 +30,7 @@ public class LocationServiceImpl extends BaseServiceImpl implements LocationServ
 			SPosition sPosition = new SPosition();
 			LocationDto locationDto = savePositionReqDto.getLocationDto();
 			BeanUtils.copyProperties(locationDto, sPosition);
+			sPosition.setAddress(locationDto.getAddr());
 			sPosition.setAuthorize(savePositionReqDto.getAuthorize());
 			sPosition.setOperateIp(savePositionReqDto.getOperateIp());
 			positionBo.savePosition(sPosition);

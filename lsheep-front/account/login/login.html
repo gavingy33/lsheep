@@ -8,25 +8,26 @@
 <link
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="login.css" rel="stylesheet">
 </head>
-<body>
-	<div>
-		<form>
+<body class="login">
+	<div class="content">
+		<form class="login-form">
 			<div class="form-group">
-				<input type="text" class="form-control" id="username"
-					placeholder="登录名" />
+				<input type="text" class="form-control placeholder-no-fix"
+					id="username" placeholder="登录名" />
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" id="password"
-					placeholder="密码" />
+				<input type="password" class="form-control placeholder-no-fix"
+					id="password" placeholder="密码" />
 			</div>
 			<div class="checkbox">
 				<label><input type="checkbox" />记住我</label>
 			</div>
-			<button type="submit" class="btn btn-default">登陆</button>
+			<button type="button" class="btn btn-info btn-block">登陆</button>
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="commo/js/bootstrap.js"></script>
+	<script src="/lsheep-front/common/js/bootstrap.js"></script>
 </body>
 </html>
