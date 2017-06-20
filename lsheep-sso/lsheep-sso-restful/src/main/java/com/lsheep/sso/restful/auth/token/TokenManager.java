@@ -1,4 +1,4 @@
-package com.lsheep.sso.auth.token;
+package com.lsheep.sso.restful.auth.token;
 
 public interface TokenManager {
 

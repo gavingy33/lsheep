@@ -1,4 +1,4 @@
-package com.lsheep.sso.account.model;
+package com.lsheep.sso.restful.account.model;
 
 public class LoginModel {
 

@@ -1,4 +1,4 @@
-package com.lsheep.sso.auth.filter;
+package com.lsheep.sso.restful.auth.filter;
 
 import java.io.IOException;
 

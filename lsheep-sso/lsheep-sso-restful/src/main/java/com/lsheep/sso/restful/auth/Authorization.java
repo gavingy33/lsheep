@@ -1,4 +1,4 @@
-package com.lsheep.sso.auth;
+package com.lsheep.sso.restful.auth;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

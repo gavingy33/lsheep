@@ -13,8 +13,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public TransferResponse<LoginResponseDto> login(TransferRequest<LoginRequestDto> request) {
-		// TODO Auto-generated method stub
-		return null;
+		TransferResponse<LoginResponseDto> transferResponse = new TransferResponse<>(LoginResponseDto.class);
+		return transferResponse;
 	}
 
 }

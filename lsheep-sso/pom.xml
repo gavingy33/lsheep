@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -9,23 +11,14 @@
 	</parent>
 
 	<artifactId>lsheep-sso</artifactId>
-	<packaging>war</packaging>
-
+	<packaging>pom</packaging>
 	<name>lsheep-sso</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-customer-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-common-webservice</artifactId>
-		</dependency>
 	</dependencies>
 
-	<build>
-		<finalName>lsheep-sso</finalName>
-	</build>
+	<modules>
+		<module>lsheep-sso-restful</module>
+	</modules>
 </project>

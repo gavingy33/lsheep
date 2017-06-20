@@ -9,4 +9,10 @@
 		implementorClass="com.lsheep.customer.client.location.service.LocationService"
 		address="/locationService">
 	</jaxws:endpoint>
+
+	<jaxws:endpoint id="accountWebService" implementor="#accountServiceImpl"
+		implementorClass="com.lsheep.customer.client.account.service.AccountService"
+		address="/accountService">
+	</jaxws:endpoint>
+
 </beans>

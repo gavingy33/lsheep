@@ -11,4 +11,9 @@
 		address="${lsheep.customer.web.url}/customer-web/api/locationService?wsdl">
 	</jaxws:client>
 
+	<jaxws:client id="accountService"
+		serviceClass="com.lsheep.customer.client.account.service.AccountService"
+		address="${lsheep.customer.web.url}/customer-web/api/accountService?wsdl">
+	</jaxws:client>
+
 </beans>

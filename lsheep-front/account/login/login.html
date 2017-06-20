@@ -12,22 +12,28 @@
 </head>
 <body class="login">
 	<div class="content">
-		<form class="login-form">
+		<form class="login-form" id="loginForm">
+			<input type="hidden" name="loginType" value="USERNAME">
 			<div class="form-group">
 				<input type="text" class="form-control placeholder-no-fix"
-					id="username" placeholder="登录名" />
+					id="username" name="username" placeholder="登录名">
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control placeholder-no-fix"
-					id="password" placeholder="密码" />
+					id="password" name="password" placeholder="密码">
 			</div>
 			<div class="checkbox">
-				<label><input type="checkbox" />记住我</label>
+				<label><input type="checkbox" id="remberMe" name="remberMe"
+					value="true">记住我</label>
 			</div>
-			<button type="button" class="btn btn-info btn-block">登陆</button>
+			<button type="button" id="login" class="btn btn-info btn-block">登陆</button>
 		</form>
+	</div>
+	<div class="copyright">
+		<p>Copyright © lsheep.com</p>
 	</div>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/lsheep-front/common/js/bootstrap.js"></script>
+	<script src="login.js"></script>
 </body>
 </html>

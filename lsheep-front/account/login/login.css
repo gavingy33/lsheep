@@ -9,7 +9,6 @@
 }
 
 .login .content {
-	background: url(../img/bg-white-lock.png);
 	width: 500px;
 	margin: 0 auto;
 	padding: 20px 30px 15px;
@@ -123,7 +122,10 @@
 	margin: 0 auto;
 	padding: 10px;
 	color: #eee;
-	font-size: 13px
+	font-size: 13px;
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
 }
 
 @media ( max-width :480px) {
@@ -138,6 +140,6 @@
 		font-size: 22px
 	}
 	.login .checkbox {
-		font-size: 13px
+		font-size: 14px
 	}
 }
