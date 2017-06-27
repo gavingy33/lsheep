@@ -9,9 +9,9 @@
 	<bean id="transMessage" class="com.lsheep.common.webservice.aspect.TransMessage" />
 
 	<aop:config>
-		<aop:pointcut id="webservice" expression="execution(* com.lsheep..service.*(..))" />
+		<aop:pointcut id="webservice" expression="execution(* com.lsheep..service..*(..))" />
 		<aop:aspect ref="transMessage">
-			<aop:around method="localProceed" pointcut-ref="webservice" />
+			<aop:around method="proceed" pointcut-ref="webservice" />
 		</aop:aspect>
 	</aop:config>
 
