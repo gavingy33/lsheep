@@ -33,7 +33,7 @@ public class TransMessage extends Base {
 		} finally {
 			String response = JSON.toJSONString(transferResponse, true);
 			long time = System.currentTimeMillis() - start;
-			logger.info("访问方法:{}.{}结束,耗时:{},出参:\n{}", className, methodName, time, response);
+			logger.info("访问方法:{}.{}结束,耗时:{}毫秒,出参:\n{}", className, methodName, time, response);
 		}
 		return transferResponse;
 	}
