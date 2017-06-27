@@ -1,4 +1,4 @@
-package com.lsheep.common.core.annotation;
+package com.lsheep.common.core.base.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

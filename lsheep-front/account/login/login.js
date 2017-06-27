@@ -1,26 +1,55 @@
 var login = function() {
-	var commit = function() {
-		var $_login = $("#login");
-		$_login.click(function() {
-			$_login.attr('disabled', 'disabled');
-			console.log($("#loginForm").serialize());
-			$.post("/sso-restful/sso/login", $("#loginForm").serialize(), function(restResponse) {
-				var responseHeader = restResponse.header;
-				if (200 != responseHeader.statusCode) {
-					alert(responseHeader.message);
+
+	var initValidation = function() {
+		$("#loginForm").bootstrapValidator({
+			message : "This value is not valid",
+			live : "enabled",
+			feedbackIcons : {
+				valid : "glyphicon glyphicon-ok",
+				invalid : "glyphicon glyphicon-remove",
+				validating : "glyphicon glyphicon-refresh"
+			},
+			fields : {
+				"username" : {
+					validators : {
+						notEmpty : {
+							message : "请输入登录名"
+						}
+					}
+				},
+				"password" : {
+					validators : {
+						notEmpty : {
+							message : "请输入密码"
+						}
+					}
+				}
+			}
+		});
+	};
+
+	var submitEvent = function() {
+		var $_submit = $("#loginButton");
+		$_submit.attr("disabled", "disabled");
+		$_submit.click(function() {
+			$.post("/sso-restful/sso/login", $("#loginForm").serialize(), function(response) {
+				var header = response.header;
+				if (200 != header.statusCode) {
+					alert(header.message);
 				}
 			});
 		});
 	};
 
 	return {
-		init : function() {
-			commit();
+		onload : function() {
+			initValidation();
+			submitEvent();
 		}
 	}
 
 }();
 
 $(function() {
-	login.init();
+	login.onload();
 });

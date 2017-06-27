@@ -1,5 +1,5 @@
 .login {
-	background-color: #666 !important
+	background-color: #fff !important
 }
 
 .login .logo {
@@ -24,7 +24,7 @@
 }
 
 .login .content label, .login .content p {
-	color: #fff
+	color: #333
 }
 
 .login .content .forget-form, .login .content .login-form {
@@ -121,7 +121,7 @@
 	text-align: center;
 	margin: 0 auto;
 	padding: 10px;
-	color: #eee;
+	color: #000;
 	font-size: 13px;
 	width: 100%;
 	bottom: 0px;

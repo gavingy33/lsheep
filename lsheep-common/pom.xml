@@ -19,6 +19,16 @@
 
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-common-core</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<modules>
 		<module>lsheep-common-core</module>
 		<module>lsheep-common-database</module>

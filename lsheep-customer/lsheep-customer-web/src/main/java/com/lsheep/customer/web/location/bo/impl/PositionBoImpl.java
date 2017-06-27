@@ -2,7 +2,7 @@ package com.lsheep.customer.web.location.bo.impl;
 
 import javax.annotation.Resource;
 
-import com.lsheep.common.core.annotation.Business;
+import com.lsheep.common.core.base.annotation.Business;
 import com.lsheep.customer.database.model.SPosition;
 import com.lsheep.customer.web.location.bo.PositionBo;
 import com.lsheep.customer.web.location.dao.PositionDao;

@@ -42,7 +42,7 @@ public class TransferResponse<T> {
 		this.model = model;
 	}
 
-	public void failure(Exception e) {
+	public void failure(Throwable e) {
 		e.printStackTrace();
 	}
 

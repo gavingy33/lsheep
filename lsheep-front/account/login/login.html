@@ -3,37 +3,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="login.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/lsheep-front/common/js/bootstrap.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css">
+	<link rel="stylesheet" href="login.css">
 </head>
 <body class="login">
 	<div class="content">
-		<form class="login-form" id="loginForm">
+		<form class="login-form" id="loginForm" role="form">
 			<input type="hidden" name="loginType" value="USERNAME">
 			<div class="form-group">
-				<input type="text" class="form-control placeholder-no-fix"
-					id="username" name="username" placeholder="登录名">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-user"></i>
+					</span>
+					<input type="text" class="form-control placeholder-no-fix" id="username" name="username" placeholder="登录名" required>
+				</div>
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control placeholder-no-fix"
-					id="password" name="password" placeholder="密码">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-lock"></i>
+					</span>
+					<input type="password" class="form-control placeholder-no-fix" id="password" name="password" placeholder="密码" required>
+				</div>
 			</div>
 			<div class="checkbox">
-				<label><input type="checkbox" id="remberMe" name="remberMe"
-					value="true">记住我</label>
+				<label><input type="checkbox" id="remberMe" name="remberMe" value="true">记住我</label>
 			</div>
-			<button type="button" id="login" class="btn btn-info btn-block">登陆</button>
+			<button type="submit" id="loginButton" class="btn btn-info btn-block">登陆</button>
 		</form>
 	</div>
 	<div class="copyright">
 		<p>Copyright © lsheep.com</p>
 	</div>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="/lsheep-front/common/js/bootstrap.js"></script>
 	<script src="login.js"></script>
 </body>
 </html>
