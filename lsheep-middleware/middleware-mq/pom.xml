@@ -15,5 +15,10 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>4.1.0-incubating</version>
+		</dependency>
 	</dependencies>
 </project>

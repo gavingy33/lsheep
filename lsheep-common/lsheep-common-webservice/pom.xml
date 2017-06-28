@@ -29,5 +29,9 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-common-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-middleware-mq</artifactId>
+		</dependency>
 	</dependencies>
 </project>

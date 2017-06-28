@@ -15,6 +15,10 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<modules>
