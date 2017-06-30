@@ -7,16 +7,14 @@ import org.aspectj.lang.Signature;
 
 import com.alibaba.fastjson.JSON;
 import com.lsheep.common.core.base.Base;
+import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
 import com.lsheep.middleware.mq.MqProducer;
 import com.lsheep.middleware.mq.model.MqMessage;
+import com.lsheep.middleware.mq.topic.PlatformTransferMessage;
+import com.lsheep.middleware.mq.topic.PlatformTransferMessage.EnumTopicTag;
 
 public class TransMessage extends Base {
-
-	// 平台交互报文TOPIC
-	private final String TOPIC = "platform_transfer_message";
-	private final String TAG_REQUEST = "request";
-	private final String TAG_RESPONSE = "response";
 
 	@Resource
 	private MqProducer mqProducer;
@@ -37,12 +35,12 @@ public class TransMessage extends Base {
 				// 本地方法调用
 				className = targetClass.getName();
 			}
-			String request = JSON.toJSONString(arguments[0], true);
+			TransferRequest<?> transferRequest = (TransferRequest<?>) arguments[0];
+			String request = JSON.toJSONString(transferRequest, true);
 			logger.info("访问方法:{}.{}开始,入参:\n{}", className, methodName, request);
-			MqMessage<?> mqMessage = new MqMessage<>();
-			mqMessage.setTopic(TOPIC);
-			mqMessage.setTag(TAG_REQUEST);
-			mqMessage.setModel(null);
+			MqMessage<TransferRequest<?>> mqMessage = new MqMessage<>();
+			mqMessage.setTopic(new PlatformTransferMessage(EnumTopicTag.REQUEST));
+			mqMessage.setModel(transferRequest);
 			mqProducer.send(mqMessage);
 			transferResponse = (TransferResponse<?>) joinPoint.proceed();
 		} catch (Throwable e) {
@@ -51,10 +49,9 @@ public class TransMessage extends Base {
 			String response = JSON.toJSONString(transferResponse, true);
 			long time = System.currentTimeMillis() - start;
 			logger.info("访问方法:{}.{}结束,耗时:{}毫秒,出参:\n{}", className, methodName, time, response);
-			MqMessage<?> mqMessage = new MqMessage<>();
-			mqMessage.setTopic(TOPIC);
-			mqMessage.setTag(TAG_RESPONSE);
-			mqMessage.setModel(null);
+			MqMessage<TransferResponse<?>> mqMessage = new MqMessage<>();
+			mqMessage.setTopic(new PlatformTransferMessage(EnumTopicTag.RESPONSE));
+			mqMessage.setModel(transferResponse);
 			mqProducer.send(mqMessage);
 		}
 		return transferResponse;

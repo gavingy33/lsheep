@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="mqProducer" factory-bean="mqFactoryImpl" factory-method="producer" destroy-method="shutdown">
-		<constructor-arg index="1">
+		<constructor-arg index="0">
 			<bean class="com.lsheep.middleware.mq.MqConfig">
 				<property name="mqType" value="${lsheep.mq.type}" />
 				<property name="groupName" value="${lsheep.mq.groupName}" />
