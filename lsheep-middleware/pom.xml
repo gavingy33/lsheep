@@ -29,6 +29,6 @@
 	<modules>
 		<module>middleware-cache</module>
 		<module>middleware-mq</module>
-		<module>lsheep-middleware-zookeeper</module>
+		<module>middleware-zookeeper</module>
 	</modules>
 </project>
