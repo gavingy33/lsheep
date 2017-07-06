@@ -32,10 +32,18 @@ var login = function() {
 		var $_submit = $("#loginButton");
 		$_submit.attr("disabled", "disabled");
 		$_submit.click(function() {
-			$.post("/sso-restful/sso/login", $("#loginForm").serialize(), function(response) {
-				var header = response.header;
-				if (200 != header.statusCode) {
-					alert(header.message);
+			$.ajax({
+				type : "POST",
+				async : false,
+				url : "/sso-restful/sso/login",
+				data : $("#loginForm").serialize(),
+				success : function(response) {
+					var header = response.header;
+					if (200 != header.statusCode) {
+						alert(header.message);
+						return;
+					}
+					alert("响应成功");
 				}
 			});
 		});

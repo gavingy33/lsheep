@@ -7,7 +7,7 @@ import com.lsheep.common.core.utils.StringUtils;
 
 public class CriteriaUtils {
 
-	public static <C, M> void buildCriteria(C criteria, M model) {
+	public static <C, M> void buildEqualToCriteria(C criteria, M model) {
 		try {
 			Field[] fields = model.getClass().getDeclaredFields();
 			for (Field field : fields) {

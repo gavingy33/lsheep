@@ -28,7 +28,7 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao {
 	public List<SCustomer> select(SCustomer example) {
 		SCustomerExample customerExample = new SCustomerExample();
 		SCustomerExample.Criteria criteria = customerExample.createCriteria();
-		CriteriaUtils.buildCriteria(criteria, example);
+		CriteriaUtils.buildEqualToCriteria(criteria, example);
 		return sCustomerMapper.selectByExample(customerExample);
 	}
 

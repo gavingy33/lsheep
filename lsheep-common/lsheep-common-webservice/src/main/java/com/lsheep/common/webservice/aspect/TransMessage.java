@@ -42,9 +42,10 @@ public class TransMessage extends Base {
 			MqMessage<TransferRequest<?>> mqMessage = new MqMessage<>();
 			mqMessage.setTopic(new PlatformTransferMessage(EnumTopicTag.REQUEST));
 			mqMessage.setModel(transferRequest);
-			mqProducer.send(mqMessage);
+//			mqProducer.send(mqMessage);
 			transferResponse = (TransferResponse<?>) joinPoint.proceed();
 		} catch (Throwable e) {
+			transferResponse.header().setSuccess(false);
 			ExceptionHandler.handler(transferResponse, e);
 		} finally {
 			String response = JSON.toJSONString(transferResponse, true);
@@ -53,7 +54,7 @@ public class TransMessage extends Base {
 			MqMessage<TransferResponse<?>> mqMessage = new MqMessage<>();
 			mqMessage.setTopic(new PlatformTransferMessage(EnumTopicTag.RESPONSE));
 			mqMessage.setModel(transferResponse);
-			mqProducer.send(mqMessage);
+//			mqProducer.send(mqMessage);
 		}
 		return transferResponse;
 	}

@@ -6,7 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 public class ResponseHeader {
 
-	private boolean success;
+	private boolean success = true;
 
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date timestamp = new Date();
