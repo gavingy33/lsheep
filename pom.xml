@@ -13,6 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.version>1.0.0</project.version>
 	</properties>
 
 	<dependencies>
@@ -98,27 +99,42 @@
 			<dependency>
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-test</artifactId>
-				<version>1.0.0</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-common-core</artifactId>
-				<version>1.0.0</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-common-webservice</artifactId>
-				<version>1.0.0</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-common-database</artifactId>
-				<version>1.0.0</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-customer-client</artifactId>
-				<version>1.0.0</version>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-middleware-zookeeper</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-middleware-mq</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-config-client</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -127,6 +143,7 @@
 		<module>lsheep-common</module>
 		<module>lsheep-middleware</module>
 		<module>lsheep-test</module>
+		<module>lsheep-config</module>
 		<module>lsheep-customer</module>
 		<module>lsheep-sso</module>
 	</modules>

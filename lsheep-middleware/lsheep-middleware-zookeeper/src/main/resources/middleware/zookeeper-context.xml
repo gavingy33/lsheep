@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="zkClient" class="com.lsheep.middleware.zookeeper.client.ZkClient"
+		destroy-method="close" lazy-init="false">
+		<constructor-arg index="0">
+			<bean class="com.lsheep.middleware.zookeeper.client.ZkConfig">
+				<property name="connection" value="${lsheep.zk.connection}" />
+				<property name="namespace" value="${lsheep.zk.namespace}" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+</beans>

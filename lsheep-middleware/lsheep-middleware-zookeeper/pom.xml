@@ -3,26 +3,22 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>com.lsheep</groupId>
-		<artifactId>lsheep-parent</artifactId>
+		<artifactId>lsheep-middleware</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>lsheep-sso</artifactId>
-	<packaging>pom</packaging>
-	<name>lsheep-sso</name>
+	<artifactId>lsheep-middleware-zookeeper</artifactId>
+	<name>lsheep-middleware-zookeeper</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-config-client</artifactId>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>3.3.0</version>
 		</dependency>
 	</dependencies>
 
-	<modules>
-		<module>lsheep-sso-restful</module>
-	</modules>
 </project>

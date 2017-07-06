@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+	<bean id="configZkClient" class="com.lsheep.middleware.zookeeper.client.ZkClient" destroy-method="close" lazy-init="false">
+		<constructor-arg index="0">
+			<bean class="com.lsheep.middleware.zookeeper.client.ZkConfig">
+				<property name="connection" value="${lsheep.config.zk.connection}" />
+				<property name="namespace" value="/config/${lsheep.config.zk.namespace}" />
+			</bean>
+		</constructor-arg>
+		<property name="platform" value="${lsheep.config.zk.platform}" />
+	</bean>
+	 -->
+	
+	<bean id="configurer" factory-bean="propertyConfigurerFactory" factory-method="create" />
+
+</beans>

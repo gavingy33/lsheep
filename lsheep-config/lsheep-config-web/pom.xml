@@ -6,23 +6,19 @@
 
 	<parent>
 		<groupId>com.lsheep</groupId>
-		<artifactId>lsheep-parent</artifactId>
+		<artifactId>lsheep-config</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>lsheep-sso</artifactId>
-	<packaging>pom</packaging>
-	<name>lsheep-sso</name>
+	<artifactId>lsheep-config-web</artifactId>
+	<packaging>war</packaging>
+
+	<name>lsheep-config-web</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-config-client</artifactId>
-		</dependency>
 	</dependencies>
-
-	<modules>
-		<module>lsheep-sso-restful</module>
-	</modules>
+	<build>
+		<finalName>config-web</finalName>
+	</build>
 </project>
