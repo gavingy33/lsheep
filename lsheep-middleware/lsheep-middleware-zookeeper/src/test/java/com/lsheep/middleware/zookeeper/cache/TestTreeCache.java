@@ -19,7 +19,7 @@ public class TestTreeCache extends BaseTest {
 		TreeCache treeCache = zkClient.treeCache("/");
 		Map<String, String> map = treeCache.all();
 		for (Map.Entry<String, String> entry : map.entrySet()) {
-			System.out.println(String.format("path=%-30s vaule=%s", entry.getKey(), entry.getValue()));
+			System.out.println(String.format("path=%-40s vaule=%s", entry.getKey(), entry.getValue()));
 		}
 		treeCache.close();
 	}

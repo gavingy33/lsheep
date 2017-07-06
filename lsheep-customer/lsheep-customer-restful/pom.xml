@@ -20,6 +20,10 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-customer-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-config-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
