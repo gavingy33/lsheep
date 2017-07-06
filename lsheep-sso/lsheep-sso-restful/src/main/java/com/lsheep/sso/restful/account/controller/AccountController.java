@@ -15,11 +15,11 @@ import com.lsheep.common.core.restful.dto.response.ResponseHeader;
 import com.lsheep.common.core.restful.dto.response.RestResponse;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
-import com.lsheep.customer.client.account.dto.request.LoginRequestDto;
+import com.lsheep.customer.client.account.dto.request.AccountLoginRequestDto;
 import com.lsheep.customer.client.account.dto.response.CustomerDto;
-import com.lsheep.customer.client.account.dto.response.LoginResponseDto;
+import com.lsheep.customer.client.account.dto.response.AccountLoginResponseDto;
 import com.lsheep.customer.client.account.service.AccountService;
-import com.lsheep.sso.restful.account.model.LoginModel;
+import com.lsheep.sso.restful.account.form.LoginForm;
 
 @RestController
 @RequestMapping(value = "/sso")
@@ -30,11 +30,14 @@ public class AccountController extends BaseControllerImpl {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public RestResponse<CustomerDto> login(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute LoginModel loginModel) {
+			@ModelAttribute LoginForm loginForm) {
 		RestResponse<CustomerDto> restResponse = new RestResponse<>();
 		try {
-			TransferRequest<LoginRequestDto> transferRequest = new TransferRequest<>(LoginRequestDto.class);
-			TransferResponse<LoginResponseDto> transferResponse = accountService.login(transferRequest);
+			TransferRequest<AccountLoginRequestDto> transferRequest = new TransferRequest<>(AccountLoginRequestDto.class);
+			AccountLoginRequestDto loginRequestDto = transferRequest.model();
+			loginRequestDto.setUsername(loginForm.getUsername());
+			loginRequestDto.setPassword(loginForm.getPassword());
+			TransferResponse<AccountLoginResponseDto> transferResponse = accountService.accountLogin(transferRequest);
 
 			ResponseHeader responseHeader = restResponse.getHeader();
 			if (!transferResponse.header().success()) {

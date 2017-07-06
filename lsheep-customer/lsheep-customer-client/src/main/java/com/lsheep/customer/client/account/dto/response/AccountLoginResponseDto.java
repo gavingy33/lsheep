@@ -1,6 +1,6 @@
 package com.lsheep.customer.client.account.dto.response;
 
-public class LoginResponseDto {
+public class AccountLoginResponseDto {
 
 	private boolean success;
 	private CustomerDto customerDto;

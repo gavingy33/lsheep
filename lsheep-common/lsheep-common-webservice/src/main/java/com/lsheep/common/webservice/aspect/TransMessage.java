@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSON;
 import com.lsheep.common.core.base.Base;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
+import com.lsheep.common.webservice.handler.ExceptionHandler;
 import com.lsheep.middleware.mq.MqProducer;
 import com.lsheep.middleware.mq.model.MqMessage;
 import com.lsheep.middleware.mq.topic.PlatformTransferMessage;
@@ -44,7 +45,7 @@ public class TransMessage extends Base {
 			mqProducer.send(mqMessage);
 			transferResponse = (TransferResponse<?>) joinPoint.proceed();
 		} catch (Throwable e) {
-			transferResponse.failure(e);
+			ExceptionHandler.handler(transferResponse, e);
 		} finally {
 			String response = JSON.toJSONString(transferResponse, true);
 			long time = System.currentTimeMillis() - start;

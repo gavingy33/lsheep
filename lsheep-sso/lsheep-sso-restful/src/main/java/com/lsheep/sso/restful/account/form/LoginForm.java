@@ -1,6 +1,6 @@
-package com.lsheep.sso.restful.account.model;
+package com.lsheep.sso.restful.account.form;
 
-public class LoginModel {
+public class LoginForm {
 
 	private LoginType loginType;
 	private String username;

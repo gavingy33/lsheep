@@ -1,4 +1,4 @@
-package com.lsheep.config.client.property;
+package com.lsheep.config.client.configurer;
 
 import java.io.IOException;
 import java.util.Collection;

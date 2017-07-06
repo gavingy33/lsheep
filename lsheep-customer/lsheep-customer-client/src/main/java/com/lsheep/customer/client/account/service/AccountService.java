@@ -4,12 +4,12 @@ import javax.jws.WebService;
 
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
-import com.lsheep.customer.client.account.dto.request.LoginRequestDto;
-import com.lsheep.customer.client.account.dto.response.LoginResponseDto;
+import com.lsheep.customer.client.account.dto.request.AccountLoginRequestDto;
+import com.lsheep.customer.client.account.dto.response.AccountLoginResponseDto;
 
 @WebService
 public interface AccountService {
 
-	TransferResponse<LoginResponseDto> login(TransferRequest<LoginRequestDto> request);
+	TransferResponse<AccountLoginResponseDto> accountLogin(TransferRequest<AccountLoginRequestDto> request);
 
 }
