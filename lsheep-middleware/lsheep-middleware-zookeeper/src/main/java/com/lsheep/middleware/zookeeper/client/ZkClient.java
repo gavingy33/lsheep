@@ -9,6 +9,7 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.utils.PathUtils;
 
+import com.lsheep.middleware.zookeeper.cache.ChildCache;
 import com.lsheep.middleware.zookeeper.cache.NodeCache;
 import com.lsheep.middleware.zookeeper.cache.TreeCache;
 
@@ -32,14 +33,19 @@ public class ZkClient implements Closeable {
 		framework.start();
 	}
 
-	public TreeCache treeCache(String rootPath) throws Exception {
-		PathUtils.validatePath(rootPath);
-		return new TreeCache(framework, rootPath);
+	public TreeCache treeCache(String path) throws Exception {
+		PathUtils.validatePath(path);
+		return new TreeCache(framework, path);
 	}
 
 	public NodeCache nodeCache(String path) throws Exception {
 		PathUtils.validatePath(path);
 		return new NodeCache(framework, path);
+	}
+
+	public ChildCache childCache(String path) throws Exception {
+		PathUtils.validatePath(path);
+		return new ChildCache(framework, path);
 	}
 
 	@Override

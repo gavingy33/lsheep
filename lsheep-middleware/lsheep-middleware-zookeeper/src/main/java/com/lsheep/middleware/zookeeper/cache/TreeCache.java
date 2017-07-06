@@ -1,6 +1,5 @@
 package com.lsheep.middleware.zookeeper.cache;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.google.common.base.Charsets;
 
-public class TreeCache implements Closeable {
+public class TreeCache implements Cache {
 
 	private CuratorFramework client;
 	private String rootPath;
@@ -63,6 +62,7 @@ public class TreeCache implements Closeable {
 		}
 	}
 
+	@Override
 	public String data(String path) {
 		PathUtils.validatePath(path);
 		if (rootPath.equals(path)) {
@@ -81,6 +81,7 @@ public class TreeCache implements Closeable {
 		return null;
 	}
 
+	@Override
 	public Map<String, String> children(String path) {
 		PathUtils.validatePath(path);
 		Map<String, String> result = new TreeMap<>();
@@ -94,6 +95,7 @@ public class TreeCache implements Closeable {
 		return result;
 	}
 
+	@Override
 	public Map<String, String> all() {
 		Map<String, String> result = new TreeMap<>();
 		result.put(rootPath, new String(rootCache.getCurrentData().getData(), Charsets.UTF_8));
@@ -104,6 +106,11 @@ public class TreeCache implements Closeable {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public String data() {
+		return data(rootPath);
 	}
 
 }

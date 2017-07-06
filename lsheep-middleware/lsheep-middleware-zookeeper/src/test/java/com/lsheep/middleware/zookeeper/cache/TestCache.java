@@ -33,7 +33,7 @@ public class TestCache {
 		Map<String, String> map2 = new HashMap<>();
 		map2.put("lsheep.mq.groupName", "LSHEEP_SSO_RESTFUL");
 		map2.put("lsheep.zk.connection", "118.89.196.241:2181");
-		map2.put("lsheep.zk.namespace", "app/sso/sso-restful");
+		map2.put("lsheep.zk.namespace", "config/sso/sso-restful");
 		System.out.println(JSON.toJSONString(map2));
 		client.setData().forPath("/sso/sso-restful", JSON.toJSONString(map2).getBytes(Charsets.UTF_8));
 
