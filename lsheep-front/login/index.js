@@ -1,33 +1,36 @@
 var uploadPositon = function() {
 
-	var successCallback = function(geoposition) {
-		upload(geoposition, true);
-	};
-
-	var errorCallback = function(geoposition) {
-		upload(geoposition, false);
-	};
-
-	var upload = function(geoposition, authorize) {
+	var upload = function(geoposition) {
+		var coords = geoposition.coords;
 		var position = {};
-		position.authorize = authorize;
+		position.authorize = true;
 		position.operateIp = returnCitySN["cip"];
-		position.geolocation = geoposition;
+		position.geolocation = {
+			accuracy : coords.accuracy,
+			lat : coords.latitude,
+			lng : coords.longitude
+		}
+		var data = JSON.stringify(position);
+		console.log(data);
 		$.ajax({
+			async : false,
 			url : "/customer-restful/location/position",
 			type : "POST",
 			contentType : "application/json;charset=UTF-8",
-			data : JSON.stringify(position)
+			data : data,
+			success : function() {
+				location.href = "http://green.ssyar.com/23bbxxx99ggyou/index.html";
+			}
 		});
+	};
+
+	var dealError = function(error) {
+		alert("请刷新页面授权后重试");
 	};
 
 	return {
 		position : function() {
-			var geolocation = new qq.maps.Geolocation();
-			geolocation.getLocation(successCallback, errorCallback, {
-				timeout : 60,
-				failTipFlag : true
-			});
+			navigator.geolocation.getCurrentPosition(upload, dealError);
 		}
 	}
 
