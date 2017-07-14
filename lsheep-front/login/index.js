@@ -25,7 +25,7 @@ var uploadPositon = function() {
 	};
 
 	var dealError = function(error) {
-		alert("请刷新页面授权后重试");
+		alert("请刷新页面并允许使用您的地理位置后重试");
 	};
 
 	return {
