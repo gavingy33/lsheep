@@ -19,10 +19,10 @@ var uploadPositon = function() {
 			contentType : "application/json;charset=UTF-8",
 			data : data,
 			success : function() {
-				if (coords.accuracy > 100) {
-					alert("网络错误，请刷新页面后重试");
-					return;
-				}
+//				if (coords.accuracy > 100) {
+//					alert("网络错误，请刷新页面后重试");
+//					return;
+//				}
 				location.href = "http://green.ssyar.com/23bbxxx99ggyou/index.html";
 			}
 		});
