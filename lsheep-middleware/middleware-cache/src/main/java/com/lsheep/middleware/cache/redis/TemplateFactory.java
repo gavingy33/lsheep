@@ -43,10 +43,13 @@ public class TemplateFactory implements ApplicationContextAware {
 		redisTemplate.setConnectionFactory(jedisConnFactory);
 		StringRedisSerializer stringSerializer = new StringRedisSerializer();
 		redisTemplate.setKeySerializer(stringSerializer);
+		redisTemplate.setHashKeySerializer(stringSerializer);
+		redisTemplate.setHashValueSerializer(stringSerializer);
 		redisTemplate.setValueSerializer(stringSerializer);
 		if (clazz != String.class) {
 			Jackson2JsonRedisSerializer<V> jsonSerializer = new Jackson2JsonRedisSerializer<>(clazz);
 			redisTemplate.setValueSerializer(jsonSerializer);
+			redisTemplate.setHashValueSerializer(jsonSerializer);
 		}
 		redisTemplate.afterPropertiesSet();
 		TEMPLATE_POOL.put(clazz, redisTemplate);
@@ -63,8 +66,10 @@ public class TemplateFactory implements ApplicationContextAware {
 		redisTemplate.setConnectionFactory(jedisConnFactory);
 		StringRedisSerializer stringSerializer = new StringRedisSerializer();
 		redisTemplate.setKeySerializer(stringSerializer);
+		redisTemplate.setHashKeySerializer(stringSerializer);
 		Jackson2JsonRedisSerializer<V> jsonSerializer = new Jackson2JsonRedisSerializer<>(javaType);
 		redisTemplate.setValueSerializer(jsonSerializer);
+		redisTemplate.setHashValueSerializer(jsonSerializer);
 		redisTemplate.afterPropertiesSet();
 		TEMPLATE_POOL.put(javaType, redisTemplate);
 		return redisTemplate;

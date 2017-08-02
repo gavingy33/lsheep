@@ -147,6 +147,7 @@
 		<module>lsheep-config</module>
 		<module>lsheep-customer</module>
 		<module>lsheep-sso</module>
+		<module>lsheep-article</module>
 	</modules>
 
 	<build>
