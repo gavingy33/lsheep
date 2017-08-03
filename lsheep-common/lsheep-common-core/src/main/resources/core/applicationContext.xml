@@ -4,14 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-
-	<!-- <bean id="baseConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="order" value="1" /> <property name="ignoreUnresolvablePlaceholders" 
-		value="true" /> <property name="location" value="classpath*:/**/*-config.properties" 
-		/> </bean> -->
-
+	<context:component-scan base-package="com.lsheep" />
 	<context:property-placeholder location="classpath*:/**/*-config.properties" />
 	<import resource="classpath*:/**/*-context.xml" />
-	<context:component-scan base-package="com.lsheep" />
 
 </beans>

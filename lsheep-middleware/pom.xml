@@ -20,10 +20,6 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-common-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-test</artifactId>
-		</dependency>
 	</dependencies>
 
 	<modules>

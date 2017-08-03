@@ -24,6 +24,10 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-common-webservice</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-test</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

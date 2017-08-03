@@ -20,6 +20,10 @@
 			<groupId>com.lsheep</groupId>
 			<artifactId>lsheep-article-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-middleware-cache</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

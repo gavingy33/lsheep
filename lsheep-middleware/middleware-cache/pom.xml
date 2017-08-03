@@ -25,5 +25,10 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.8.4.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>

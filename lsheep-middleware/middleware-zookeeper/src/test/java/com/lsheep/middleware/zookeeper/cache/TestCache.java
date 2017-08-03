@@ -36,23 +36,34 @@ public class TestCache {
 		map2.put("lsheep.zk.namespace", "config/sso/sso-restful");
 		System.out.println(JSON.toJSONString(map2));
 		client.setData().forPath("/sso/sso-restful", JSON.toJSONString(map2, true).getBytes(Charsets.UTF_8));
-		
+
 		Map<String, String> map3 = new HashMap<>();
 		map3.put("lsheep.mq.groupName", "LSHEEP_CUSTOMER_RESTFUL");
 		map3.put("lsheep.zk.namespace", "config/customer/customer-restful");
 		System.out.println(JSON.toJSONString(map3));
 		client.setData().forPath("/customer/customer-restful", JSON.toJSONString(map3, true).getBytes(Charsets.UTF_8));
-		
+
 		Map<String, String> map4 = new HashMap<>();
 		map4.put("lsheep.mq.groupName", "LSHEEP_CUSTOMER_WEB");
 		map4.put("lsheep.zk.namespace", "config/customer/customer-web");
 		map4.put("lsheep.db.driver", "com.mysql.jdbc.Driver");
-		map4.put("lsheep.db.url", "jdbc:mysql://lsheep.com:3306/lsheep_customer?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+		map4.put("lsheep.db.url",
+				"jdbc:mysql://lsheep.com:3306/lsheep_customer?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
 		map4.put("lsheep.db.username", "lsheep");
 		map4.put("lsheep.db.password", "lsheep");
-		
+
 		System.out.println(JSON.toJSONString(map4));
 		client.setData().forPath("/customer/customer-web", JSON.toJSONString(map4, true).getBytes(Charsets.UTF_8));
+
+		Map<String, String> map5 = new HashMap<>();
+		map5.put("lsheep.mq.groupName", "LSHEEP_ARTICLE_WEB");
+		map5.put("lsheep.zk.namespace", "config/article/article-web");
+		map5.put("lsheep.db.url", "jdbc:mysql://lsheep.com:3306/lsheep_article?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+		map5.put("lsheep.db.username", "lsheep");
+		map5.put("lsheep.db.password", "lsheep");
+
+		System.out.println(JSON.toJSONString(map4));
+		client.setData().forPath("/article/article-web", JSON.toJSONString(map5, true).getBytes(Charsets.UTF_8));
 
 		PathChildrenCache cache = new PathChildrenCache(client, "/", true);
 		cache.start(StartMode.BUILD_INITIAL_CACHE);

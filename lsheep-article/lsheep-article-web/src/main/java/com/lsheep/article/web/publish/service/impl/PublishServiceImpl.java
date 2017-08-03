@@ -29,7 +29,7 @@ public class PublishServiceImpl extends BaseServiceImpl implements PublishServic
 
 		// 生成文章检索信息
 		ArticleDto articleDto = new ArticleDto();
-		publishBo.cacheIndex(articleDto);
+		publishBo.storeIndex(articleDto);
 
 		return null;
 	}

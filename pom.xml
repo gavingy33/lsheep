@@ -134,6 +134,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-middleware-cache</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-config-client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -141,6 +146,12 @@
 				<groupId>com.lsheep</groupId>
 				<artifactId>lsheep-article-client</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-test</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

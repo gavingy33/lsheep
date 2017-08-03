@@ -113,4 +113,11 @@ public class RedisCache {
 		return operations.add(cacheKey(namespace, key), values);
 	}
 
+	public static Boolean sismember(String namespace, String key, String value) {
+		RedisTemplate<String, String> redisTemplate = (RedisTemplate<String, String>) TemplateFactory
+				.createTemplate(String.class);
+		SetOperations<String, String> operations = redisTemplate.opsForSet();
+		return operations.isMember(cacheKey(namespace, key), value);
+	}
+
 }
