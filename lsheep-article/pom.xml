@@ -15,6 +15,20 @@
 	<name>lsheep-article</name>
 	<url>http://maven.apache.org</url>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-webservice</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+	</dependencyManagement>
+
 	<modules>
 		<module>lsheep-article-client</module>
 		<module>lsheep-article-web</module>

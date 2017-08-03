@@ -137,6 +137,11 @@
 				<artifactId>lsheep-config-client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.lsheep</groupId>
+				<artifactId>lsheep-article-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

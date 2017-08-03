@@ -16,6 +16,10 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-article-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
