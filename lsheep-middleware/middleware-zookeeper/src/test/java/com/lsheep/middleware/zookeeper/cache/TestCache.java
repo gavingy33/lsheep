@@ -23,13 +23,23 @@ public class TestCache {
 				.connectString("118.89.196.241:2181").namespace("config").build();
 		client.start();
 
-		Map<String, String> map1 = new HashMap<>();
-		map1.put("lsheep.mq.type", "ROCKET_MQ");
-		map1.put("lsheep.mq.connection", "118.89.196.241:9876");
-		map1.put("lsheep.zk.connection", "118.89.196.241:2181");
-		map1.put("lsheep.customer.web.url", "http://127.0.0.1:8080");
-		System.out.println(JSON.toJSONString(map1));
-		client.setData().forPath("/common/webservice", JSON.toJSONString(map1, true).getBytes(Charsets.UTF_8));
+		Map<String, String> webservice = new HashMap<>();
+		webservice.put("lsheep.customer.web.url", "http://127.0.0.1:8080");
+		System.out.println(JSON.toJSONString(webservice));
+		client.setData().forPath("/common/webservice", JSON.toJSONString(webservice, true).getBytes(Charsets.UTF_8));
+		
+		Map<String, String> zookeeper = new HashMap<>();
+		zookeeper.put("lsheep.zk.connection", "118.89.196.241:2181");
+		zookeeper.put("lsheep.zk.namespace", "COMMON");
+		System.out.println(JSON.toJSONString(zookeeper));
+		client.setData().forPath("/common/zookeeper", JSON.toJSONString(zookeeper, true).getBytes(Charsets.UTF_8));
+
+		
+		Map<String, String> messageQueue = new HashMap<>();
+		messageQueue.put("lsheep.mq.type", "ROCKET_MQ");
+		messageQueue.put("lsheep.mq.connection", "118.89.196.241:9876");
+		System.out.println(JSON.toJSONString(messageQueue));
+		client.setData().forPath("/common/mq", JSON.toJSONString(messageQueue, true).getBytes(Charsets.UTF_8));
 
 		Map<String, String> map2 = new HashMap<>();
 		map2.put("lsheep.mq.groupName", "LSHEEP_SSO_RESTFUL");
