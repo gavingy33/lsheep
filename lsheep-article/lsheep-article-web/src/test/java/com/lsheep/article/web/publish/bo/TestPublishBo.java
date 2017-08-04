@@ -8,12 +8,13 @@ import javax.annotation.Resource;
 import org.junit.Test;
 
 import com.lsheep.article.web.publish.dto.ArticleDto;
+import com.lsheep.article.web.publish.dto.ArticleVoteDto;
 import com.lsheep.test.BaseTest;
 
 public class TestPublishBo extends BaseTest {
 
 	@Resource
-	private PublishBo publishBo;
+	private ArticleBo publishBo;
 
 	@Test
 	public void testStoreIndex() {
@@ -24,6 +25,15 @@ public class TestPublishBo extends BaseTest {
 		articleDto.setAuthorId("000001");
 		articleDto.setPublishDate(new Date());
 		articleDto.setTags(Arrays.asList(new String[] { "TAG_A", "TAG_B" }));
-		publishBo.storeIndex(articleDto);
+		publishBo.storeArticleIndex(articleDto);
 	}
+
+	@Test
+	public void testVote() {
+		ArticleVoteDto articleVoteDto = new ArticleVoteDto();
+		articleVoteDto.setArticleId("001");
+		articleVoteDto.setVoteCustomerId("000001");
+		publishBo.voteArticle(articleVoteDto);
+	}
+
 }
