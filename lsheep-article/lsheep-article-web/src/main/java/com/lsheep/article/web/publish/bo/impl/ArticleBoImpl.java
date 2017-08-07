@@ -45,14 +45,14 @@ public class ArticleBoImpl extends BaseBoImpl implements ArticleBo {
 	public void voteArticle(ArticleVoteDto articleVoteDto) {
 		String articleId = articleVoteDto.getArticleId();
 		String voteCustomerId = articleVoteDto.getVoteCustomerId();
-		long addWeight = 1 * SORT_WEIGHT;
 		String voteArticle = KEY__ARTICLE_VOTE_PREFIX.concat(articleId);
 		long numbers = RedisCache.sadd(NAMESPACE, voteArticle, voteCustomerId);
 		if (numbers <= 0) {
 			logger.warn("key:[{}] in set:[{}] has being exists, vote fail", voteCustomerId, voteArticle);
 			return;
 		}
-		RedisCache.zincrby(NAMESPACE, KEY__SORT_WEIGHT, articleId, addWeight);
+		long incrWeight = 1 * SORT_WEIGHT;
+		RedisCache.zincrby(NAMESPACE, KEY__SORT_WEIGHT, articleId, incrWeight);
 	}
 
 }
