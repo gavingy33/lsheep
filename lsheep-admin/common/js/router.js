@@ -1,12 +1,6 @@
-define([ "avalon", "mmRouter" ], function(avalon, mmRouter) {
-	var vm = avalon.define({
-		$id : "lsheep-admin",
-		currPath : ""
-	});
+define([ "avalon", "mmRouter", "/index.js" ], function(avalon, mmRouter, index) {
 
-	avalon.router.add("/aaa", function() {
-		vm.currPath = this.path;
-	});
+	avalon.router.add("/config", function() {});
 
 	avalon.router.error(function(a) {
 		console.log("path error");
@@ -15,5 +9,4 @@ define([ "avalon", "mmRouter" ], function(avalon, mmRouter) {
 	avalon.history.start();
 	//启动扫描机制,让avalon接管页面
 	avalon.scan(document.body);
-
 });

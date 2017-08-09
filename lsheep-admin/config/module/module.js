@@ -2,34 +2,26 @@ define([ "jquery", "ztree", "bootstrap-table" ], function($, ztree, bTable) {
 
 	var initTree = function() {
 		var setting = {};
-		var zNodes = [
-			{
-				name : "test1",
-				open : false,
-				children : [
-					{
-						name : "test1_1"
-					}, {
-						name : "test1_2"
-					} ]
-			},
-			{
-				name : "test2",
-				open : false,
-				children : [
-					{
-						name : "test2_1"
-					}, {
-						name : "test2_2"
-					} ]
+		$.ajax({
+			url : "/config-restful/property/tree",
+			type : "GET",
+			data : {},
+			success : function(response) {
+				var header = response.header;
+				if (header.statusCode != 200) {
+					alert(header.message);
+					return;
+				}
+				var nodes = response.body;
+				$.fn.zTree.init($("#modulePanel #configTree"), setting, nodes);
 			}
-		];
-		$.fn.zTree.init($("#modulePanel #configTree"), setting, zNodes);
+		});
+
 	};
 
 	var initTable = function() {
 		$("#configPanel #configTable").bootstrapTable({
-			// url: '/Home/GetDepartment',         //请求后台的URL（*）
+			//			url : '/Home/GetDepartment', //请求后台的URL（*）
 			method : 'get', //请求方式（*）
 			toolbar : '#toolbar', //工具按钮用哪个容器
 			striped : true, //是否显示行间隔色

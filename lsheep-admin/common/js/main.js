@@ -22,7 +22,8 @@ requirejs.config({
 	}
 });
 
-require([ "domReady!", "avalon" ], function(doc, avalon) {
-	avalon.require = requirejs;
-	requirejs([ "router" ]);
+require([ "domReady!" ], function(doc) {
+	require([ "/index.js" ], function(index) {
+		index.onload();
+	})
 });
