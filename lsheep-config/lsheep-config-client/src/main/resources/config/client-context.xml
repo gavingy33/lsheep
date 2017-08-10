@@ -7,7 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<bean id="configurer" factory-bean="propertyConfigurerFactory"
-		factory-method="create" />
+	<bean id="configurer" factory-bean="propertyConfigurerFactory" factory-method="create" />
+
+	<jaxws:client id="propertyService"
+		serviceClass="com.lsheep.config.client.property.service.PropertyService"
+		address="${lsheep.config.web.url}/config-web/api/propertyService?wsdl">
+	</jaxws:client>
 
 </beans>

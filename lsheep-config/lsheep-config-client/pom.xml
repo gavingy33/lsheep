@@ -15,5 +15,9 @@
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.lsheep</groupId>
+			<artifactId>lsheep-common-webservice</artifactId>
+		</dependency>
 	</dependencies>
 </project>

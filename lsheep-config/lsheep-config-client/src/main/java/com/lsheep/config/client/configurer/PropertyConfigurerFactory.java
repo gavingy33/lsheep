@@ -14,12 +14,16 @@ import org.springframework.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lsheep.common.core.base.annotation.Factory;
+import com.lsheep.common.core.logger.Logger;
+import com.lsheep.common.core.logger.factory.LoggerFactory;
 import com.lsheep.middleware.zookeeper.cache.Cache;
 import com.lsheep.middleware.zookeeper.client.ZkClient;
 import com.lsheep.middleware.zookeeper.client.ZkConfig;
 
 @Factory
 public class PropertyConfigurerFactory {
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private static final String COMMON_CONFIG_PATH = "/common";
 	private static final String ZK_CONFIG_FILE = "/config/zk-config.properties";
@@ -39,21 +43,22 @@ public class PropertyConfigurerFactory {
 		configurer.setOrder(2);
 		configurer.setIgnoreUnresolvablePlaceholders(true);
 		configurer.setProperties(properties);
-		ZkClient zkClient = createZkClient();
-		// 加载并解析通用配置
-		Cache commonCache = zkClient.childCache(COMMON_CONFIG_PATH);
-		resolve(commonCache);
-		commonCache.close();
-		if (loadPlatformConfig) {
-			// 加载并解析平台独立配置
-			String platform = zkClient.getPlatform();
-			String prefix = PATH_SPLIT.concat(platform.substring(0, platform.indexOf('-'))).concat(PATH_SPLIT);
-			Cache platformCache = zkClient.childCache(prefix + platform);
-			resolve(platformCache);
-			platformCache.close();
+		try (ZkClient zkClient = createZkClient()) {
+			// 加载并解析通用配置
+			Cache commonCache = zkClient.childCache(COMMON_CONFIG_PATH);
+			resolve(commonCache);
+			commonCache.close();
+			if (loadPlatformConfig) {
+				// 加载并解析平台独立配置
+				String platform = properties.getProperty(ZK_PLATFORM);
+				String prefix = PATH_SPLIT.concat(platform.substring(0, platform.indexOf('-'))).concat(PATH_SPLIT);
+				Cache platformCache = zkClient.childCache(prefix + platform);
+				resolve(platformCache);
+				platformCache.close();
+			}
+		} catch (Exception e) {
+			logger.warn("加载ZOOKEEPER配置失败", e);
 		}
-		// 释放资源
-		zkClient.close();
 		return configurer;
 	}
 
@@ -84,7 +89,6 @@ public class PropertyConfigurerFactory {
 		zkConfig.setConnection(properties.getProperty(ZK_CONNECTION));
 		zkConfig.setNamespace(properties.getProperty(ZK_NAMESPACE));
 		ZkClient zkClient = new ZkClient(zkConfig);
-		zkClient.setPlatform(properties.getProperty(ZK_PLATFORM));
 		return zkClient;
 	}
 

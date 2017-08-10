@@ -1,23 +1,70 @@
-define([ "jquery", "ztree", "bootstrap-table" ], function($, ztree, bTable) {
+define([ "jquery", "tree", "table", "menu" ], function($, tree, table, menu) {
 
 	var initTree = function() {
-		var setting = {};
-		$.ajax({
+		tree.asyncTree({
+			treeName : "#modulePanel #configTree",
 			url : "/config-restful/property/tree",
+			onClick : function(event, treeId, treeNode) {
+				if (treeNode.isModule) return;
+				nodePanel(treeNode);
+			},
+			onRightClick : function(event, treeId, treeNode) {
+				if (!treeNode.isModule) return;
+				nodePanel(treeNode);
+			},
+			onExpand : function(event, treeId, treeNode) {
+				initzTreeRightMenu(treeNode.tId);
+			}
+		});
+	};
+
+	var nodePanel = function(treeNode) {
+		$.ajax({
+			url : "/config-restful/property/node/" + treeNode.id,
 			type : "GET",
-			data : {},
 			success : function(response) {
 				var header = response.header;
 				if (header.statusCode != 200) {
-					alert(header.message);
+					console.error(header.message);
 					return;
 				}
-				var nodes = response.body;
-				$.fn.zTree.init($("#modulePanel #configTree"), setting, nodes);
+				var property = response.body;
 			}
 		});
-
 	};
+
+	/* 以下方法是通过上面的js插件封装的方法 */
+
+	/*
+	　　parentNode（zTree容器 || 指定的节点）
+	*/
+	function initzTreeRightMenu(treeId) {
+		//树形菜单右击事件
+		$('li, a', $(treeId)).contextmenu({
+			target : '#zTreeRightMenuContainer', //此设置项是zTree的容器
+			before : function(e, element, target) {
+				var zTreeObj = $.fn.zTree.getZTreeObj("configTree");
+				//当前右击节点ID
+				var selectedId = element[0].tagName == 'LI' ? element.attr('id') : element.parent().attr('id');
+				//根据节点ID获取当前节点详细信息
+				curSelectNode = zTreeObj.getNodeByTId(selectedId);
+				//当前节点的层级
+				var level = curSelectNode.level;
+				level = 0;
+				//选中当前右击节点
+				zTreeObj.selectNode(curSelectNode);
+				//根据当前节点层级显示相应的菜单
+				$('#zTreeRightMenuContainer ul.dropdown-menu[level="' + level + '"]').removeClass('hide').siblings().addClass('hide');
+			},
+			onItem : function(context, e) {
+				var action = $(e.target).attr('action');
+				this.closemenu();
+				if (action) {
+					zTreeRightMenuFuns[action]();
+				}
+			}
+		});
+	}
 
 	var initTable = function() {
 		$("#configPanel #configTable").bootstrapTable({
@@ -66,7 +113,7 @@ define([ "jquery", "ztree", "bootstrap-table" ], function($, ztree, bTable) {
 	return {
 		onload : function() {
 			initTree();
-			initTable();
+		//			initTable();
 		}
 	}
 

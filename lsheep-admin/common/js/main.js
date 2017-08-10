@@ -4,12 +4,14 @@ requirejs.config({
 		"jquery" : "jquery/jquery",
 		"ztree" : "ztree/jquery.ztree.all",
 		"bootstrap" : "bootstrap/bootstrap",
-		"bootstrap-table" : "bootstrap/bootstrap-table",
+		"table" : "bootstrap/bootstrap-table",
+		"menu" : "bootstrap/bootstrap-menu",
 		"css" : "require/css",
 		"domReady" : "require/domReady",
 		"text" : "require/text",
 		"avalon" : "avalon/avalon",
-		"mmRouter" : "avalon/mmRouter"
+		"mmRouter" : "avalon/mmRouter",
+		"tree" : "lsheep/tree"
 	},
 	shim : {
 		"avalon" : {

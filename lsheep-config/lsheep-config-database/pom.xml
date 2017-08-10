@@ -10,28 +10,15 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>lsheep-config-web</artifactId>
-	<packaging>war</packaging>
+	<artifactId>lsheep-config-database</artifactId>
+	<name>lsheep-config-database</name>
 
-	<name>lsheep-config-web</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-config-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-config-database</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.lsheep</groupId>
-			<artifactId>lsheep-test</artifactId>
+			<artifactId>lsheep-common-database</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<finalName>config-web</finalName>
-	</build>
 </project>

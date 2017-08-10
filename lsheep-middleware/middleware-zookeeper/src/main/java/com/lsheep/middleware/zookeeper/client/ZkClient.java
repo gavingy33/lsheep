@@ -15,16 +15,7 @@ import com.lsheep.middleware.zookeeper.cache.TreeCache;
 
 public class ZkClient implements Closeable {
 
-	private String platform;
 	private CuratorFramework framework;
-
-	public String getPlatform() {
-		return platform;
-	}
-
-	public void setPlatform(String platform) {
-		this.platform = platform;
-	}
 
 	public ZkClient(ZkConfig zkConfig) {
 		RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);

@@ -2,12 +2,13 @@ package com.lsheep.common.core.tree;
 
 import java.util.List;
 
-public abstract class TreeNode {
+public abstract class AbstractTreeNode {
 
 	private Integer id;
 	private String name;
 	private String title;
-	private List<? extends TreeNode> children;
+	private Boolean isParent;
+	private List<? extends AbstractTreeNode> children;
 
 	public Integer getId() {
 		return id;
@@ -33,11 +34,19 @@ public abstract class TreeNode {
 		this.title = title;
 	}
 
-	public List<? extends TreeNode> getChildren() {
+	public Boolean getIsParent() {
+		return isParent;
+	}
+
+	public void setIsParent(Boolean isParent) {
+		this.isParent = isParent;
+	}
+
+	public List<? extends AbstractTreeNode> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<? extends TreeNode> children) {
+	public void setChildren(List<? extends AbstractTreeNode> children) {
 		this.children = children;
 	}
 
