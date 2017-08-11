@@ -2,6 +2,7 @@ requirejs.config({
 	baseUrl : "/common/js",
 	paths : {
 		"jquery" : "jquery/jquery",
+		"toastr" : "toastr/toastr",
 		"ztree" : "ztree/jquery.ztree.all",
 		"bootstrap" : "bootstrap/bootstrap",
 		"table" : "bootstrap/bootstrap-table",
@@ -17,9 +18,9 @@ requirejs.config({
 		"avalon" : {
 			exports : "avalon"
 		},
-		"mmRouter" : {
-			deps : [ "avalon" ],
-			exports : "mmRouter"
+		"tree" : {
+			deps : [ "toastr" ],
+			exports : "tree"
 		}
 	}
 });

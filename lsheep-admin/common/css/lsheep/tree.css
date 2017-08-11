@@ -1,0 +1,35 @@
+.tree-menu {
+	color: #EEE;
+	background-color: rgb(105, 98, 98);
+	border-color: #1f78b5;
+	line-height: 1.44;
+	margin-left: 0;
+	margin-right: 5px;
+	margin-top: 0;
+	transition: all .3s;
+	text-decoration: none;
+	cursor: pointer;
+	outline: 0 !important;
+	box-shadow: none !important;
+	padding: 1px 5px;
+	font-size: 12px;
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	touch-action: manipulation;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	user-select: none;
+	text-shadow: none;
+	background-image: none;
+	border-radius: 0 !important;
+	width: 70px;
+}
+
+.tree-menu:hover {
+	color: #50E2E2;
+	text-decoration: none;
+	background-color: rgb(158, 150, 150);
+}
