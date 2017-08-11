@@ -693,62 +693,52 @@ public class SPropertyExample {
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateEqualTo(String value) {
+		public Criteria andModifyDateEqualTo(Date value) {
 			addCriterion("MODIFY_DATE =", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateNotEqualTo(String value) {
+		public Criteria andModifyDateNotEqualTo(Date value) {
 			addCriterion("MODIFY_DATE <>", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateGreaterThan(String value) {
+		public Criteria andModifyDateGreaterThan(Date value) {
 			addCriterion("MODIFY_DATE >", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateGreaterThanOrEqualTo(String value) {
+		public Criteria andModifyDateGreaterThanOrEqualTo(Date value) {
 			addCriterion("MODIFY_DATE >=", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateLessThan(String value) {
+		public Criteria andModifyDateLessThan(Date value) {
 			addCriterion("MODIFY_DATE <", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateLessThanOrEqualTo(String value) {
+		public Criteria andModifyDateLessThanOrEqualTo(Date value) {
 			addCriterion("MODIFY_DATE <=", value, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateLike(String value) {
-			addCriterion("MODIFY_DATE like", value, "modifyDate");
-			return (Criteria) this;
-		}
-
-		public Criteria andModifyDateNotLike(String value) {
-			addCriterion("MODIFY_DATE not like", value, "modifyDate");
-			return (Criteria) this;
-		}
-
-		public Criteria andModifyDateIn(List<String> values) {
+		public Criteria andModifyDateIn(List<Date> values) {
 			addCriterion("MODIFY_DATE in", values, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateNotIn(List<String> values) {
+		public Criteria andModifyDateNotIn(List<Date> values) {
 			addCriterion("MODIFY_DATE not in", values, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateBetween(String value1, String value2) {
+		public Criteria andModifyDateBetween(Date value1, Date value2) {
 			addCriterion("MODIFY_DATE between", value1, value2, "modifyDate");
 			return (Criteria) this;
 		}
 
-		public Criteria andModifyDateNotBetween(String value1, String value2) {
+		public Criteria andModifyDateNotBetween(Date value1, Date value2) {
 			addCriterion("MODIFY_DATE not between", value1, value2, "modifyDate");
 			return (Criteria) this;
 		}
@@ -763,52 +753,62 @@ public class SPropertyExample {
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserEqualTo(Date value) {
+		public Criteria andCreateUserEqualTo(String value) {
 			addCriterion("CREATE_USER =", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserNotEqualTo(Date value) {
+		public Criteria andCreateUserNotEqualTo(String value) {
 			addCriterion("CREATE_USER <>", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserGreaterThan(Date value) {
+		public Criteria andCreateUserGreaterThan(String value) {
 			addCriterion("CREATE_USER >", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserGreaterThanOrEqualTo(Date value) {
+		public Criteria andCreateUserGreaterThanOrEqualTo(String value) {
 			addCriterion("CREATE_USER >=", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserLessThan(Date value) {
+		public Criteria andCreateUserLessThan(String value) {
 			addCriterion("CREATE_USER <", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserLessThanOrEqualTo(Date value) {
+		public Criteria andCreateUserLessThanOrEqualTo(String value) {
 			addCriterion("CREATE_USER <=", value, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserIn(List<Date> values) {
+		public Criteria andCreateUserLike(String value) {
+			addCriterion("CREATE_USER like", value, "createUser");
+			return (Criteria) this;
+		}
+
+		public Criteria andCreateUserNotLike(String value) {
+			addCriterion("CREATE_USER not like", value, "createUser");
+			return (Criteria) this;
+		}
+
+		public Criteria andCreateUserIn(List<String> values) {
 			addCriterion("CREATE_USER in", values, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserNotIn(List<Date> values) {
+		public Criteria andCreateUserNotIn(List<String> values) {
 			addCriterion("CREATE_USER not in", values, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserBetween(Date value1, Date value2) {
+		public Criteria andCreateUserBetween(String value1, String value2) {
 			addCriterion("CREATE_USER between", value1, value2, "createUser");
 			return (Criteria) this;
 		}
 
-		public Criteria andCreateUserNotBetween(Date value1, Date value2) {
+		public Criteria andCreateUserNotBetween(String value1, String value2) {
 			addCriterion("CREATE_USER not between", value1, value2, "createUser");
 			return (Criteria) this;
 		}

@@ -1,5 +1,6 @@
 package com.lsheep.config.web.property.bo.impl;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,15 @@ public class PropertyBoImpl extends BaseBoImpl implements PropertyBo {
 	public SProperty findProperty(SProperty sProperty) {
 		List<SProperty> sProperties = propertyDao.select(sProperty);
 		return CollectionUtils.isEmpty(sProperties) ? null : sProperties.get(0);
+	}
+
+	@Override
+	public void saveProperty(SProperty sProperty) {
+		Date current = new Date();
+		sProperty.setCreateDate(current);
+		sProperty.setModifyDate(current);
+		sProperty.setDeleted(false);
+		propertyDao.insert(sProperty);
 	}
 
 }

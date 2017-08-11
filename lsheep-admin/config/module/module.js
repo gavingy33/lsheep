@@ -15,10 +15,18 @@ define([ "jquery", "tree", "table", "menu", "toastr" ], function($, tree, table,
 	};
 
 	var menus = function(treeNode) {
+		$panelIndex = $("#panelIndex");
 		var add = {
 			name : "新增",
 			action : function(event, treeId, treeNode) {
-				toastr.info("add" + treeNode.name);
+				$panelIndex.empty().load("/config/module/module_add.html", function() {
+					debugger;
+					$("#moduleAddForm #parentPath").val(treeNode.path);
+					$("#moduleAddForm #parentId").val(treeNode.id);
+
+					$("#moduleAddForm #path").val(treeNode.path + "/template");
+					console.info($("#moduleAddForm").serialize());
+				});
 			}
 		};
 		var modify = {

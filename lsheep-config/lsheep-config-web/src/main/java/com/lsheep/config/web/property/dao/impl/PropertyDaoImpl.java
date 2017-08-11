@@ -27,4 +27,9 @@ public class PropertyDaoImpl extends BaseDaoImpl implements PropertyDao {
 		return sPropertyMapper.selectByExampleWithBLOBs(propertyExample);
 	}
 
+	@Override
+	public int insert(SProperty sProperty) {
+		return sPropertyMapper.insertSelective(sProperty);
+	}
+
 }

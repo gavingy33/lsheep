@@ -11,6 +11,8 @@ public class ResponseHeader {
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date timestamp = new Date();
 
+	private String message;
+
 	public Date getTimestamp() {
 		return timestamp;
 	}
@@ -27,4 +29,15 @@ public class ResponseHeader {
 		return this.success;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
 }

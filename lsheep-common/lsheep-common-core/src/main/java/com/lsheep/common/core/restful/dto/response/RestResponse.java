@@ -4,10 +4,10 @@ import com.lsheep.common.core.restful.constant.StatusCode;
 
 public class RestResponse<T> {
 
-	private final ResponseHeader header = new ResponseHeader();
+	private final RestHeader header = new RestHeader();
 	private T body;
 
-	public ResponseHeader getHeader() {
+	public RestHeader getHeader() {
 		return header;
 	}
 

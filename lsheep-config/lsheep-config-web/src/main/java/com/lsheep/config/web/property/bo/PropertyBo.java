@@ -10,4 +10,6 @@ public interface PropertyBo {
 
 	SProperty findProperty(SProperty sProperty);
 
+	void saveProperty(SProperty sProperty);
+
 }

@@ -8,4 +8,6 @@ public interface PropertyDao {
 
 	List<SProperty> select(SProperty sProperty);
 
+	int insert(SProperty sProperty);
+
 }

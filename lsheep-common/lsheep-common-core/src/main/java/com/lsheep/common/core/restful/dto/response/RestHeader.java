@@ -2,7 +2,7 @@ package com.lsheep.common.core.restful.dto.response;
 
 import com.lsheep.common.core.restful.constant.StatusCode;
 
-public class ResponseHeader {
+public class RestHeader {
 
 	private Integer statusCode = StatusCode.OK;
 	private String redirectUrl;

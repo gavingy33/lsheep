@@ -14,8 +14,8 @@
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="HASH" jdbcType="VARCHAR" property="hash" />
     <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="MODIFY_DATE" jdbcType="VARCHAR" property="modifyDate" />
-    <result column="CREATE_USER" jdbcType="TIMESTAMP" property="createUser" />
+    <result column="MODIFY_DATE" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
     <result column="MODIFY_USER" jdbcType="VARCHAR" property="modifyUser" />
     <result column="DELETED" jdbcType="BIT" property="deleted" />
   </resultMap>
@@ -189,7 +189,7 @@
       DELETED, CONTEXT)
     values (#{isModule,jdbcType=BIT}, #{parentId,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, 
       #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{modifyDate,jdbcType=VARCHAR}, #{createUser,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyUser,jdbcType=VARCHAR}, 
       #{deleted,jdbcType=BIT}, #{context,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lsheep.config.database.model.SProperty">
@@ -262,10 +262,10 @@
         #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyDate != null">
-        #{modifyDate,jdbcType=VARCHAR},
+        #{modifyDate,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null">
-        #{createUser,jdbcType=TIMESTAMP},
+        #{createUser,jdbcType=VARCHAR},
       </if>
       <if test="modifyUser != null">
         #{modifyUser,jdbcType=VARCHAR},
@@ -320,10 +320,10 @@
         CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.modifyDate != null">
-        MODIFY_DATE = #{record.modifyDate,jdbcType=VARCHAR},
+        MODIFY_DATE = #{record.modifyDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createUser != null">
-        CREATE_USER = #{record.createUser,jdbcType=TIMESTAMP},
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
       </if>
       <if test="record.modifyUser != null">
         MODIFY_USER = #{record.modifyUser,jdbcType=VARCHAR},
@@ -353,8 +353,8 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       HASH = #{record.hash,jdbcType=VARCHAR},
       CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
-      MODIFY_DATE = #{record.modifyDate,jdbcType=VARCHAR},
-      CREATE_USER = #{record.createUser,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{record.modifyDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
       MODIFY_USER = #{record.modifyUser,jdbcType=VARCHAR},
       DELETED = #{record.deleted,jdbcType=BIT},
       CONTEXT = #{record.context,jdbcType=LONGVARCHAR}
@@ -376,8 +376,8 @@
       NAME = #{record.name,jdbcType=VARCHAR},
       HASH = #{record.hash,jdbcType=VARCHAR},
       CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
-      MODIFY_DATE = #{record.modifyDate,jdbcType=VARCHAR},
-      CREATE_USER = #{record.createUser,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{record.modifyDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
       MODIFY_USER = #{record.modifyUser,jdbcType=VARCHAR},
       DELETED = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
@@ -413,10 +413,10 @@
         CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyDate != null">
-        MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+        MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null">
-        CREATE_USER = #{createUser,jdbcType=TIMESTAMP},
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
       </if>
       <if test="modifyUser != null">
         MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
@@ -443,8 +443,8 @@
       NAME = #{name,jdbcType=VARCHAR},
       HASH = #{hash,jdbcType=VARCHAR},
       CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
-      CREATE_USER = #{createUser,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
       MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
       DELETED = #{deleted,jdbcType=BIT},
       CONTEXT = #{context,jdbcType=LONGVARCHAR}
@@ -463,8 +463,8 @@
       NAME = #{name,jdbcType=VARCHAR},
       HASH = #{hash,jdbcType=VARCHAR},
       CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
-      MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
-      CREATE_USER = #{createUser,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
       MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
       DELETED = #{deleted,jdbcType=BIT}
     where PROPERTY_ID = #{propertyId,jdbcType=INTEGER}
