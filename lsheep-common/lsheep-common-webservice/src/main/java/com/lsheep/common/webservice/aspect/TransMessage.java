@@ -46,6 +46,7 @@ public class TransMessage extends Base {
 			transferResponse = (TransferResponse<?>) joinPoint.proceed();
 		} catch (Throwable e) {
 			transferResponse.header().setSuccess(false);
+			transferResponse.header().setMessage(e.getMessage());
 			ExceptionHandler.handler(transferResponse, e);
 		} finally {
 			String response = JSON.toJSONString(transferResponse, true);

@@ -32,13 +32,17 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 		setting.async.url = treeConfig.url; //ajax地址
 		setting.async.otherParam = treeConfig.queryParam; //ajax参数(可选)
 		setting.callback.onClick = treeConfig.onClick; //左击回调事件
-		$zTree = $(treeConfig.treeName);
+		var treeName = treeConfig.treeName;
+		$zTree = $(treeName);
 		$container = $zTree.parent();
 		// 右击回调事件
 		setting.callback.onRightClick = function(event, treeId, treeNode) {
 			if (!treeNode) {
 				return;
 			}
+			// 选中节点
+			var zTreeObj = $.fn.zTree.getZTreeObj(treeName.substring(treeName.lastIndexOf("#") + 1));
+			zTreeObj.selectNode(treeNode);
 			var menus = treeConfig.rigthClickMenus(treeNode);
 			if (!menus || menus.lenght == 0) {
 				return;

@@ -7,12 +7,15 @@ requirejs.config({
 		"bootstrap" : "bootstrap/bootstrap",
 		"table" : "bootstrap/bootstrap-table",
 		"menu" : "bootstrap/bootstrap-menu",
+		"validator-language" : "bootstrap/language/zh_CN",
+		"bootstrap-validator" : "bootstrap/bootstrap-validator",
 		"css" : "require/css",
 		"domReady" : "require/domReady",
 		"text" : "require/text",
 		"avalon" : "avalon/avalon",
 		"mmRouter" : "avalon/mmRouter",
-		"tree" : "lsheep/tree"
+		"tree" : "lsheep/tree",
+		"validator" : "lsheep/validator"
 	},
 	shim : {
 		"avalon" : {
@@ -21,8 +24,19 @@ requirejs.config({
 		"tree" : {
 			deps : [ "toastr" ],
 			exports : "tree"
+		},
+		"bootstrap-validator" : {
+			exports : "bootstrap-validator"
+		},
+		"validator-language" : {
+			deps : [ "bootstrap-validator" ],
+			exports : "validator-language"
+		},
+		"validator" : {
+			deps : [ "bootstrap-validator", "validator-language" ],
+			exports : "validator"
 		}
-	}
+	},
 });
 
 require([ "domReady!" ], function(doc) {

@@ -1,4 +1,4 @@
-define([ "jquery", "tree", "table", "menu", "toastr" ], function($, tree, table, menu, toastr) {
+define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr) {
 
 	var initTree = function() {
 		tree.asyncTree({
@@ -20,12 +20,9 @@ define([ "jquery", "tree", "table", "menu", "toastr" ], function($, tree, table,
 			name : "新增",
 			action : function(event, treeId, treeNode) {
 				$panelIndex.empty().load("/config/module/module_add.html", function() {
-					debugger;
-					$("#moduleAddForm #parentPath").val(treeNode.path);
-					$("#moduleAddForm #parentId").val(treeNode.id);
-
-					$("#moduleAddForm #path").val(treeNode.path + "/template");
-					console.info($("#moduleAddForm").serialize());
+					require([ "/config/module/module_add.js" ], function(moduleAdd) {
+						moduleAdd.onload(treeNode);
+					})
 				});
 			}
 		};

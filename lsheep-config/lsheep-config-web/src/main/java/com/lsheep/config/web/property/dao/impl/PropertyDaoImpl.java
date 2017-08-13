@@ -24,6 +24,7 @@ public class PropertyDaoImpl extends BaseDaoImpl implements PropertyDao {
 		SPropertyExample propertyExample = new SPropertyExample();
 		SPropertyExample.Criteria criteria = propertyExample.createCriteria();
 		CriteriaUtils.buildEqualToCriteria(criteria, example);
+		propertyExample.setOrderByClause("WEIGHT");
 		return sPropertyMapper.selectByExampleWithBLOBs(propertyExample);
 	}
 

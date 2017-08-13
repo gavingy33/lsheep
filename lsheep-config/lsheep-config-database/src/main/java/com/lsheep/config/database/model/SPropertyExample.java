@@ -623,6 +623,66 @@ public class SPropertyExample {
 			return (Criteria) this;
 		}
 
+		public Criteria andWeightIsNull() {
+			addCriterion("WEIGHT is null");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightIsNotNull() {
+			addCriterion("WEIGHT is not null");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightEqualTo(Integer value) {
+			addCriterion("WEIGHT =", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightNotEqualTo(Integer value) {
+			addCriterion("WEIGHT <>", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightGreaterThan(Integer value) {
+			addCriterion("WEIGHT >", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightGreaterThanOrEqualTo(Integer value) {
+			addCriterion("WEIGHT >=", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightLessThan(Integer value) {
+			addCriterion("WEIGHT <", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightLessThanOrEqualTo(Integer value) {
+			addCriterion("WEIGHT <=", value, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightIn(List<Integer> values) {
+			addCriterion("WEIGHT in", values, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightNotIn(List<Integer> values) {
+			addCriterion("WEIGHT not in", values, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightBetween(Integer value1, Integer value2) {
+			addCriterion("WEIGHT between", value1, value2, "weight");
+			return (Criteria) this;
+		}
+
+		public Criteria andWeightNotBetween(Integer value1, Integer value2) {
+			addCriterion("WEIGHT not between", value1, value2, "weight");
+			return (Criteria) this;
+		}
+
 		public Criteria andCreateDateIsNull() {
 			addCriterion("CREATE_DATE is null");
 			return (Criteria) this;
