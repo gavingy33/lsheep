@@ -1,11 +1,15 @@
 .tree-menu {
+	background-color:  #A8A8AD;
+}
+
+.tree-menu a {
 	color: #EEE;
 	background-color: rgb(105, 98, 98);
 	border-color: #1f78b5;
 	line-height: 1.44;
-	margin-left: 0;
-	margin-right: 5px;
-	margin-top: 0;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 1px;
 	transition: all .3s;
 	text-decoration: none;
 	cursor: pointer;
@@ -25,10 +29,10 @@
 	text-shadow: none;
 	background-image: none;
 	border-radius: 0 !important;
-	width: 70px;
+	width: 72px;
 }
 
-.tree-menu:hover {
+.tree-menu a:hover {
 	color: #50E2E2;
 	text-decoration: none;
 	background-color: rgb(158, 150, 150);

@@ -63,7 +63,7 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 			// 绑定单击事件
 			$.each(menus, function(index, menu) {
 				var itemId = "zTreeMenu_item_" + index;
-				$zTreeMenu.append("<a class='tree-menu' href='javascript:void(0)' id='" + itemId + "'><i class='fa fa-edit'></i>" + menu.name + "</a><br/>");
+				$zTreeMenu.append("<a href='javascript:void(0)' id='" + itemId + "'><i class='fa fa-th-list'>&nbsp;</i>" + menu.name + "</a><br/>");
 				$menuItem = $("#" + itemId, $zTreeMenu);
 				$menuItem.click(function() {
 					menu.action(event, treeId, treeNode);
@@ -73,7 +73,7 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 		// 构造tree
 		$.fn.zTree.init($zTree, setting);
 		// 初始化菜单面板
-		$container.append("<div id='zTreeMenu' style='display:none;'></div>");
+		$container.append("<div id='zTreeMenu' class='tree-menu' style='display:none;'></div>");
 	};
 
 	var refreshNode = function(treeConfig) {

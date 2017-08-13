@@ -4,9 +4,10 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 		$("#moduleAddForm #parentPath").val(treeNode.path);
 		$("#moduleAddForm #parentId").val(treeNode.id);
 
-		$path = $("#moduleAddForm #path").val(treeNode.path);
+		var pathPrefix = treeNode.path + "/";
+		$path = $("#moduleAddForm #path").val(pathPrefix);
 		$("#moduleAddForm #code").bind("input", function() {
-			$path.val(treeNode.path + "/" + this.value);
+			$path.val(pathPrefix + this.value);
 		});
 	};
 
@@ -17,14 +18,14 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 				code : {
 					validators : {
 						notEmpty : {
-							message : "请输入属性编码"
+							message : "请输入栏目编码"
 						}
 					}
 				},
 				name : {
 					validators : {
 						notEmpty : {
-							message : "请输入属性名称"
+							message : "请输入栏目名称"
 						}
 					}
 				}
