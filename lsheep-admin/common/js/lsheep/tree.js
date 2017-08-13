@@ -1,5 +1,10 @@
 define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 
+	var getTreeObj = function(treeConfig) {
+		var treeName = treeConfig.treeName;
+		return $.fn.zTree.getZTreeObj(treeName.substring(treeName.lastIndexOf("#") + 1));
+	};
+
 	var setting = {
 		async : {
 			//			url : "http://host/getNode.php",
@@ -12,7 +17,7 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 			dataFilter : function(treeId, parentNode, response) {
 				var header = response.header;
 				if (header.statusCode != 200) {
-					console.error(header.message);
+					toastr.error(header.message);
 					return;
 				}
 				var treeNodes = [];
@@ -28,7 +33,7 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 		}
 	};
 
-	var tree = function(treeConfig) {
+	var asyncTree = function(treeConfig) {
 		setting.async.url = treeConfig.url; //ajax地址
 		setting.async.otherParam = treeConfig.queryParam; //ajax参数(可选)
 		setting.callback.onClick = treeConfig.onClick; //左击回调事件
@@ -41,8 +46,7 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 				return;
 			}
 			// 选中节点
-			var zTreeObj = $.fn.zTree.getZTreeObj(treeName.substring(treeName.lastIndexOf("#") + 1));
-			zTreeObj.selectNode(treeNode);
+			getTreeObj(treeConfig).selectNode(treeNode);
 			var menus = treeConfig.rigthClickMenus(treeNode);
 			if (!menus || menus.lenght == 0) {
 				return;
@@ -72,9 +76,27 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 		$container.append("<div id='zTreeMenu' style='display:none;'></div>");
 	};
 
+	var refreshNode = function(treeConfig) {
+		var zTreeObj = getTreeObj(treeConfig);
+		var nodes = zTreeObj.getSelectedNodes();
+		zTreeObj.reAsyncChildNodes(nodes[0], "refresh", false);
+	};
+
+	var expandNode = function(treeConfig) {
+		var zTreeObj = getTreeObj(treeConfig);
+		var nodes = zTreeObj.getSelectedNodes();
+		zTreeObj.expandNode(nodes[0], true, false, true, true);
+	};
+
 	return {
 		asyncTree (treeConfig) {
-			tree(treeConfig);
+			asyncTree(treeConfig);
+		},
+		refreshNode (treeConfig) {
+			refreshNode(treeConfig);
+		},
+		expandNode (treeConfig) {
+			expandNode(treeConfig);
 		}
 	}
 

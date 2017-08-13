@@ -37,10 +37,11 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 				}
 				toastr.success("保存成功");
 				$("#panelIndex").empty();
-				var zTree = $.fn.zTree.getZTreeObj("configTree");
-				var nodes = zTree.getSelectedNodes();
-				zTree.reAsyncChildNodes(nodes[0], "refresh", false);
-				zTree.expandNode(nodes[0], true, false, true, true);
+				var treeConfig = {
+					treeName : "#modulePanel #configTree"
+				};
+				tree.refreshNode(treeConfig);
+				tree.expandNode(treeConfig);
 			}
 		});
 	};
