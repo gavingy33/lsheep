@@ -5,7 +5,8 @@ requirejs.config({
 		"toastr" : "toastr/toastr",
 		"ztree" : "ztree/jquery.ztree.all",
 		"bootstrap" : "bootstrap/bootstrap",
-		"table" : "bootstrap/bootstrap-table",
+		"bootstrap-table" : "bootstrap/bootstrap-table",
+		"table-language" : "bootstrap/language/bootstrap-table-zh-CN",
 		"menu" : "bootstrap/bootstrap-menu",
 		"validator-language" : "bootstrap/language/zh_CN",
 		"bootstrap-validator" : "bootstrap/bootstrap-validator",
@@ -15,7 +16,8 @@ requirejs.config({
 		"avalon" : "avalon/avalon",
 		"mmRouter" : "avalon/mmRouter",
 		"tree" : "lsheep/tree",
-		"validator" : "lsheep/validator"
+		"validator" : "lsheep/validator",
+		"table" : "lsheep/table"
 	},
 	shim : {
 		"avalon" : {
@@ -35,6 +37,17 @@ requirejs.config({
 		"validator" : {
 			deps : [ "bootstrap-validator", "validator-language" ],
 			exports : "validator"
+		},
+		"bootstrap-table" : {
+			exports : "bootstrap-table"
+		},
+		"table-language" : {
+			deps : [ "bootstrap-table" ],
+			exports : "table-language"
+		},
+		"table" : {
+			deps : [ "bootstrap-table", "table-language" ],
+			exports : "table"
 		}
 	},
 });

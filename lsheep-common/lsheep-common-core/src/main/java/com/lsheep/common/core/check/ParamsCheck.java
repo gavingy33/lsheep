@@ -16,4 +16,13 @@ public abstract class ParamsCheck {
 		}
 	}
 
+	public static void notAllNull(String message, Object... targets) {
+		for (Object target : targets) {
+			if (target != null) {
+				return;
+			}
+		}
+		throw new CheckException(message);
+	}
+
 }

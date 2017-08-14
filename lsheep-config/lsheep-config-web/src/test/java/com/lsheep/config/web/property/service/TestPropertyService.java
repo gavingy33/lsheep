@@ -15,12 +15,12 @@ public class TestPropertyService extends BaseTest {
 	private PropertyService propertyService;
 
 	@Test
-	public void testPropertyNode() {
+	public void testQueryProperty() {
 		TransferRequest<QueryPropertyReqDto> request = new TransferRequest<>(QueryPropertyReqDto.class);
 		QueryPropertyReqDto queryPropertyReqDto = request.model();
 		queryPropertyReqDto.setPropertyId(1);
 		queryPropertyReqDto.setChild(true);
-		queryPropertyReqDto.setAll(true);
+		queryPropertyReqDto.setAll(false);
 		propertyService.queryProperty(request);
 	}
 

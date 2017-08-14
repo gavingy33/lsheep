@@ -40,6 +40,7 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 		ParamsCheck.notNull("queryPropertyReqDto can't be null", queryPropertyReqDto);
 		Integer propertyId = queryPropertyReqDto.getPropertyId();
 		ParamsCheck.notNull("propertyId can't be null", propertyId);
+
 		SProperty query = new SProperty();
 		query.setPropertyId(propertyId);
 		SProperty rootProperty = propertyBo.findProperty(query);
@@ -53,16 +54,20 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 		queryPropertyResDto.setPropertyNode(propertyNode);
 
 		Boolean child = queryPropertyReqDto.getChild();
-		if (child != null && child) {
-			boolean all = Boolean.TRUE.equals(queryPropertyReqDto.getAll());
-			propertyNode.setChildren(children(propertyNode, all));
+		if (Boolean.TRUE.equals(child)) {
+			Boolean all = Boolean.TRUE.equals(queryPropertyReqDto.getAll());
+			Boolean withModule = Boolean.TRUE.equals(queryPropertyReqDto.getWithModule());
+			Boolean withProperty = Boolean.TRUE.equals(queryPropertyReqDto.getWithProperty());
+			Boolean isModule = withModule == withProperty ? null : withModule;
+			propertyNode.setChildren(children(propertyNode, all, isModule));
 		}
 		return response;
 	}
 
-	private List<PropertyNode> children(PropertyNode parent, boolean all) {
+	private List<PropertyNode> children(PropertyNode parent, Boolean all, Boolean isModule) {
 		SProperty query = new SProperty();
 		query.setParentId(parent.getPropertyId());
+		query.setIsModule(isModule);
 		List<SProperty> children = propertyBo.selectProperty(query);
 		if (CollectionUtils.isEmpty(children)) {
 			return null;
@@ -72,7 +77,7 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 			PropertyNode propertyNode = new PropertyNode();
 			BeanUtils.copyProperties(child, propertyNode);
 			if (all) {
-				propertyNode.setChildren(children(propertyNode, all));
+				propertyNode.setChildren(children(propertyNode, all, isModule));
 			}
 			propertyNodes.add(propertyNode);
 		}
@@ -107,6 +112,10 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 		if (parentProperty == null) {
 			throw new BizException(String.format("can't find parent property with id [%d]", parentId));
 		}
+		if (!parentProperty.getIsModule()) {
+			throw new BizException(
+					String.format("parent [%s] isn't a module, can't be added property", parentProperty.getName()));
+		}
 
 		// 验证PATH可用
 		path = parentProperty.getPath().concat(path);
@@ -114,7 +123,7 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 		query.setPath(path);
 		SProperty exists = propertyBo.findProperty(query);
 		if (exists != null) {
-			throw new BizException(String.format("code [%s] in parent propertyId [%d] already is use", code, parentId));
+			throw new BizException(String.format("code [%s] already be used with name [%s]", code, exists.getName()));
 		}
 
 		// 保存属性

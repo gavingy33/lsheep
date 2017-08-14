@@ -36,7 +36,12 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 	var asyncTree = function(treeConfig) {
 		setting.async.url = treeConfig.url; //ajax地址
 		setting.async.otherParam = treeConfig.queryParam; //ajax参数(可选)
-		setting.callback.onClick = treeConfig.onClick; //左击回调事件
+
+		// 左击回调事件
+		setting.callback.onClick = function(event, treeId, treeNode) {
+			expandNode(treeConfig);
+			treeConfig.onClick(event, treeId, treeNode);
+		};
 		var treeName = treeConfig.treeName;
 		$zTree = $(treeName);
 		$container = $zTree.parent();

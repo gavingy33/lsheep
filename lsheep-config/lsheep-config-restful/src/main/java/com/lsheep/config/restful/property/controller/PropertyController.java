@@ -56,7 +56,12 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setPropertyId(propertyId == null ? ROOT_ID : propertyId);
 			queryPropertyReqDto.setChild(true);
 			queryPropertyReqDto.setAll(false);
+			queryPropertyReqDto.setWithModule(true);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
+			ResponseHeader responseHeader = transferResponse.getHeader();
+			if (!responseHeader.success()) {
+				throw new BizException(responseHeader.getMessage());
+			}
 
 			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
 			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
@@ -82,6 +87,11 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setChild(false);
 			queryPropertyReqDto.setAll(false);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
+			ResponseHeader responseHeader = transferResponse.getHeader();
+			if (!responseHeader.success()) {
+				throw new BizException(responseHeader.getMessage());
+			}
+
 			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
 			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
 			response.setBody(propertyNode);
@@ -154,7 +164,40 @@ public class PropertyController extends BaseControllerImpl {
 		} catch (Exception e) {
 			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
 			restHeader.setMessage(e.getMessage());
-			logger.error("", e);
+			logger.error("saveModule exception", e);
+		}
+		return response;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/child/{parentId}", method = RequestMethod.GET)
+	public RestResponse<List<PropertyNode>> child(@PathVariable Integer parentId) {
+		RestResponse<List<PropertyNode>> response = new RestResponse<>();
+		RestHeader restHeader = response.getHeader();
+		try {
+			ParamsCheck.notNull("parentId can't be null", parentId);
+
+			TransferRequest<QueryPropertyReqDto> transferRequest = new TransferRequest<>(QueryPropertyReqDto.class);
+			QueryPropertyReqDto queryPropertyReqDto = transferRequest.model();
+			queryPropertyReqDto.setPropertyId(parentId);
+			queryPropertyReqDto.setChild(true);
+			queryPropertyReqDto.setAll(false);
+			queryPropertyReqDto.setWithProperty(true);
+			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
+			ResponseHeader responseHeader = transferResponse.getHeader();
+			if (!responseHeader.success()) {
+				throw new BizException(responseHeader.getMessage());
+			}
+
+			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
+			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
+			if (propertyNode != null) {
+				response.setBody(propertyNode.getChildren());
+			}
+		} catch (Exception e) {
+			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
+			restHeader.setMessage(e.getMessage());
+			logger.error("query child error", e);
 		}
 		return response;
 	}

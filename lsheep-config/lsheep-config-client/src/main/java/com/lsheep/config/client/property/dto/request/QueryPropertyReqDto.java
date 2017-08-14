@@ -5,6 +5,8 @@ public class QueryPropertyReqDto {
 	private Integer propertyId;
 	private Boolean child;
 	private Boolean all;
+	private Boolean withModule;
+	private Boolean withProperty;
 
 	public Integer getPropertyId() {
 		return propertyId;
@@ -28,6 +30,22 @@ public class QueryPropertyReqDto {
 
 	public void setAll(Boolean all) {
 		this.all = all;
+	}
+
+	public Boolean getWithModule() {
+		return withModule;
+	}
+
+	public void setWithModule(Boolean withModule) {
+		this.withModule = withModule;
+	}
+
+	public Boolean getWithProperty() {
+		return withProperty;
+	}
+
+	public void setWithProperty(Boolean withProperty) {
+		this.withProperty = withProperty;
 	}
 
 }

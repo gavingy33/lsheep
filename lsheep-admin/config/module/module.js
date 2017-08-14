@@ -5,8 +5,11 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 			treeName : "#modulePanel #configTree",
 			url : "/config-restful/property/tree",
 			onClick : function(event, treeId, treeNode) {
-				if (treeNode.isModule) return;
-				nodePanel(treeNode);
+				$("#panelIndex").empty().load("/config/property/property.html", function() {
+					require([ "/config/property/property.js" ], function(property) {
+						property.onload(treeNode);
+					});
+				});
 			},
 			rigthClickMenus : function(treeNode) {
 				return menus(treeNode);
@@ -22,15 +25,13 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 				$panelIndex.empty().load("/config/module/module_add.html", function() {
 					require([ "/config/module/module_add.js" ], function(moduleAdd) {
 						moduleAdd.onload(treeNode);
-					})
+					});
 				});
 			}
 		};
 		var modify = {
 			name : "修改",
-			action : function(event, treeId, treeNode) {
-				toastr.info("modify" + treeNode.name);
-			}
+			action : function(event, treeId, treeNode) {}
 		};
 		var del = {
 			name : "删除",
