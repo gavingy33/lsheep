@@ -15,18 +15,13 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 			dataType : "text",
 			type : "GET",
 			dataFilter : function(treeId, parentNode, response) {
+				var treeNodes = [];
 				var header = response.header;
 				if (header.statusCode != 200) {
 					toastr.error(header.message);
-					return;
+					return treeNodes;
 				}
-				var treeNodes = [];
-				if (parentNode) {
-					treeNodes = response.body.children;
-				} else {
-					treeNodes.push(response.body);
-				}
-				return treeNodes;
+				return response.body;
 			}
 		},
 		callback : {

@@ -1,12 +1,22 @@
 package com.lsheep.common.core.page;
 
-public abstract class PageQuery {
+public class PageQuery {
 
-	private Integer pageSize;
-	private Integer pageNumber;
-	private String searchText;
-	private String sortName;
-	private String sortOrder;
+	private Boolean count = true;
+	private Integer pageSize = 0;
+	private Integer pageNumber = 1;
+	private String searchText = "";
+	private String sortName = "";
+	private String sortOrder = "";
+	private Boolean pageSizeZero = true;
+
+	public Boolean getCount() {
+		return count;
+	}
+
+	public void setCount(Boolean count) {
+		this.count = count;
+	}
 
 	public Integer getPageSize() {
 		return pageSize;
@@ -46,6 +56,14 @@ public abstract class PageQuery {
 
 	public void setSortOrder(String sortOrder) {
 		this.sortOrder = sortOrder;
+	}
+
+	public Boolean getPageSizeZero() {
+		return pageSizeZero;
+	}
+
+	public void setPageSizeZero(Boolean pageSizeZero) {
+		this.pageSizeZero = pageSizeZero;
 	}
 
 }

@@ -1,15 +1,30 @@
 package com.lsheep.config.client.property.dto.response;
 
+import java.util.List;
+
+import com.lsheep.common.core.page.PageData;
+
 public class QueryPropertyResDto {
 
-	private PropertyNode propertyNode;
+	private PageData<PropertyNode> pageData;
 
-	public PropertyNode getPropertyNode() {
-		return propertyNode;
+	public List<PropertyNode> getPropertyNodes() {
+		return pageData == null ? null : pageData.getRows();
 	}
 
-	public void setPropertyNode(PropertyNode propertyNode) {
-		this.propertyNode = propertyNode;
+	public void setPropertyNodes(List<PropertyNode> propertyNodes) {
+		if (pageData == null) {
+			pageData = new PageData<>();
+		}
+		pageData.setRows(propertyNodes);
+	}
+
+	public PageData<PropertyNode> getPageData() {
+		return pageData;
+	}
+
+	public void setPageData(PageData<PropertyNode> pageData) {
+		this.pageData = pageData;
 	}
 
 }

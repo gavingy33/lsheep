@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.lsheep.common.core.base.controller.impl.BaseControllerImpl;
 import com.lsheep.common.core.check.ParamsCheck;
 import com.lsheep.common.core.exception.BizException;
+import com.lsheep.common.core.page.PageData;
 import com.lsheep.common.core.restful.constant.StatusCode;
 import com.lsheep.common.core.restful.dto.response.RestHeader;
 import com.lsheep.common.core.restful.dto.response.RestResponse;
@@ -33,6 +34,7 @@ import com.lsheep.config.client.property.dto.response.SavePropertyResDto;
 import com.lsheep.config.client.property.service.PropertyService;
 import com.lsheep.config.restful.property.dto.ConfigTreeNode;
 import com.lsheep.config.restful.property.dto.ConfigTreeQuery;
+import com.lsheep.config.restful.property.dto.PropertyPageQuery;
 import com.lsheep.config.restful.property.form.PropertyForm;
 
 @RestController
@@ -45,16 +47,20 @@ public class PropertyController extends BaseControllerImpl {
 	private static final Integer ROOT_ID = 1;
 
 	@RequestMapping(value = "/tree", method = RequestMethod.GET)
-	public RestResponse<ConfigTreeNode> tree(@ModelAttribute ConfigTreeQuery configTreeQuery) {
-		RestResponse<ConfigTreeNode> response = new RestResponse<>();
+	public RestResponse<List<ConfigTreeNode>> tree(@ModelAttribute ConfigTreeQuery configTreeQuery) {
+		RestResponse<List<ConfigTreeNode>> response = new RestResponse<>();
 		RestHeader restHeader = response.getHeader();
 		try {
 			ParamsCheck.notNull("configTreeQuery can't be null", configTreeQuery);
 			TransferRequest<QueryPropertyReqDto> transferRequest = new TransferRequest<>(QueryPropertyReqDto.class);
 			QueryPropertyReqDto queryPropertyReqDto = transferRequest.model();
-			Integer propertyId = configTreeQuery.getId();
-			queryPropertyReqDto.setPropertyId(propertyId == null ? ROOT_ID : propertyId);
-			queryPropertyReqDto.setChild(true);
+			Integer id = configTreeQuery.getId();
+			if (id == null) {
+				queryPropertyReqDto.setPropertyId(ROOT_ID);
+			} else {
+				queryPropertyReqDto.setParentId(id);
+			}
+			queryPropertyReqDto.setChild(false);
 			queryPropertyReqDto.setAll(false);
 			queryPropertyReqDto.setWithModule(true);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
@@ -64,8 +70,14 @@ public class PropertyController extends BaseControllerImpl {
 			}
 
 			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
-			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
-			response.setBody(newConfigNode(propertyNode));
+			List<PropertyNode> propertyNodes = queryPropertyResDto.getPropertyNodes();
+			List<ConfigTreeNode> configTreeNodes = new ArrayList<>();
+			if (!CollectionUtils.isEmpty(propertyNodes)) {
+				for (PropertyNode propertyNode : propertyNodes) {
+					configTreeNodes.add(newConfigNode(propertyNode));
+				}
+			}
+			response.setBody(configTreeNodes);
 		} catch (Exception e) {
 			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
 			restHeader.setMessage(e.getMessage());
@@ -93,8 +105,10 @@ public class PropertyController extends BaseControllerImpl {
 			}
 
 			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
-			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
-			response.setBody(propertyNode);
+			List<PropertyNode> propertyNodes = queryPropertyResDto.getPropertyNodes();
+			if (!CollectionUtils.isEmpty(propertyNodes)) {
+				response.setBody(propertyNodes.get(0));
+			}
 		} catch (Exception e) {
 			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
 			restHeader.setMessage(e.getMessage());
@@ -170,19 +184,22 @@ public class PropertyController extends BaseControllerImpl {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/child/{parentId}", method = RequestMethod.GET)
-	public RestResponse<List<PropertyNode>> child(@PathVariable Integer parentId) {
-		RestResponse<List<PropertyNode>> response = new RestResponse<>();
+	@RequestMapping(value = "/node", method = RequestMethod.GET)
+	public RestResponse<PageData<PropertyNode>> child(@ModelAttribute PropertyPageQuery propertyPageQuery) {
+		RestResponse<PageData<PropertyNode>> response = new RestResponse<>();
 		RestHeader restHeader = response.getHeader();
 		try {
+			ParamsCheck.notNull("propertyPageQuery can't be null", propertyPageQuery);
+			Integer parentId = propertyPageQuery.getParentId();
 			ParamsCheck.notNull("parentId can't be null", parentId);
 
 			TransferRequest<QueryPropertyReqDto> transferRequest = new TransferRequest<>(QueryPropertyReqDto.class);
 			QueryPropertyReqDto queryPropertyReqDto = transferRequest.model();
-			queryPropertyReqDto.setPropertyId(parentId);
-			queryPropertyReqDto.setChild(true);
+			queryPropertyReqDto.setParentId(parentId);
+			queryPropertyReqDto.setChild(false);
 			queryPropertyReqDto.setAll(false);
 			queryPropertyReqDto.setWithProperty(true);
+			queryPropertyReqDto.setPageQuery(propertyPageQuery);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
 			ResponseHeader responseHeader = transferResponse.getHeader();
 			if (!responseHeader.success()) {
@@ -190,10 +207,8 @@ public class PropertyController extends BaseControllerImpl {
 			}
 
 			QueryPropertyResDto queryPropertyResDto = transferResponse.model();
-			PropertyNode propertyNode = queryPropertyResDto.getPropertyNode();
-			if (propertyNode != null) {
-				response.setBody(propertyNode.getChildren());
-			}
+			PageData<PropertyNode> pageData = queryPropertyResDto.getPageData();
+			response.setBody(pageData);
 		} catch (Exception e) {
 			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
 			restHeader.setMessage(e.getMessage());

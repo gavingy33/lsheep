@@ -11,9 +11,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lsheep.common.core.base.service.impl.BaseServiceImpl;
 import com.lsheep.common.core.check.ParamsCheck;
 import com.lsheep.common.core.exception.BizException;
+import com.lsheep.common.core.page.PageData;
+import com.lsheep.common.core.page.PageQuery;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
 import com.lsheep.config.client.property.dto.request.QueryPropertyReqDto;
@@ -35,32 +39,46 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 	@Override
 	public TransferResponse<QueryPropertyResDto> queryProperty(TransferRequest<QueryPropertyReqDto> request) {
 		TransferResponse<QueryPropertyResDto> response = new TransferResponse<>(QueryPropertyResDto.class);
-
+		// 基本参数校验
 		QueryPropertyReqDto queryPropertyReqDto = request.model();
 		ParamsCheck.notNull("queryPropertyReqDto can't be null", queryPropertyReqDto);
 		Integer propertyId = queryPropertyReqDto.getPropertyId();
-		ParamsCheck.notNull("propertyId can't be null", propertyId);
+		Integer parentId = queryPropertyReqDto.getParentId();
+		ParamsCheck.notAllNull("propertyId and parentId can't be all null", propertyId, parentId);
 
-		SProperty query = new SProperty();
-		query.setPropertyId(propertyId);
-		SProperty rootProperty = propertyBo.findProperty(query);
-		if (rootProperty == null) {
+		// 查询一级节点(分页)
+		Boolean withModule = Boolean.TRUE.equals(queryPropertyReqDto.getWithModule());
+		Boolean withProperty = Boolean.TRUE.equals(queryPropertyReqDto.getWithProperty());
+		Boolean isModule = withModule == withProperty ? null : withModule;
+		SProperty propertyQuery = new SProperty();
+		propertyQuery.setPropertyId(propertyId);
+		propertyQuery.setParentId(parentId);
+		propertyQuery.setIsModule(isModule);
+		PageQuery pageQuery = queryPropertyReqDto.getPageQuery();
+		if (pageQuery == null) {
+			pageQuery = new PageQuery();
+		}
+		Page<SProperty> page = PageHelper.startPage(pageQuery);
+		List<SProperty> properties = propertyBo.selectProperty(propertyQuery);
+		// 组装返回结果
+		QueryPropertyResDto queryPropertyResDto = response.model();
+		PageData<PropertyNode> pageData = new PageData<>(page, pageQuery);
+		queryPropertyResDto.setPageData(pageData);
+		if (CollectionUtils.isEmpty(properties)) {
 			return response;
 		}
-
-		QueryPropertyResDto queryPropertyResDto = response.model();
-		PropertyNode propertyNode = new PropertyNode();
-		BeanUtils.copyProperties(rootProperty, propertyNode);
-		queryPropertyResDto.setPropertyNode(propertyNode);
-
-		Boolean child = queryPropertyReqDto.getChild();
-		if (Boolean.TRUE.equals(child)) {
-			Boolean all = Boolean.TRUE.equals(queryPropertyReqDto.getAll());
-			Boolean withModule = Boolean.TRUE.equals(queryPropertyReqDto.getWithModule());
-			Boolean withProperty = Boolean.TRUE.equals(queryPropertyReqDto.getWithProperty());
-			Boolean isModule = withModule == withProperty ? null : withModule;
-			propertyNode.setChildren(children(propertyNode, all, isModule));
+		// 查询下级节点
+		List<PropertyNode> propertyNodes = new ArrayList<>();
+		for (SProperty sProperty : properties) {
+			PropertyNode propertyNode = new PropertyNode();
+			BeanUtils.copyProperties(sProperty, propertyNode);
+			if (Boolean.TRUE.equals(queryPropertyReqDto.getChild())) {
+				Boolean all = Boolean.TRUE.equals(queryPropertyReqDto.getAll());
+				propertyNode.setChildren(children(propertyNode, all, isModule));
+			}
+			propertyNodes.add(propertyNode);
 		}
+		pageData.setRows(propertyNodes);
 		return response;
 	}
 

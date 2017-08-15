@@ -2,14 +2,29 @@ package com.lsheep.common.core.page;
 
 import java.util.List;
 
-public abstract class PageData<T> {
+import com.github.pagehelper.Page;
+
+public class PageData<T> {
 
 	private Integer pageSize;
 	private Integer pageNumber;
-	private String searchText;
-	private String sortName;
-	private String sortOrder;
-	private List<T> data;
+	private Long total;
+	private String searchText = "";
+	private String sortName = "";
+	private String sortOrder = "";
+	private List<T> rows;
+
+	public PageData() {
+	}
+
+	public PageData(Page<?> page, PageQuery pageQuery) {
+		this.pageSize = page.getPageSize();
+		this.pageNumber = page.getPageNum();
+		this.total = page.getTotal();
+		this.sortOrder = pageQuery.getSortOrder();
+		this.sortName = pageQuery.getSortName();
+		this.searchText = pageQuery.getSearchText();
+	}
 
 	public Integer getPageSize() {
 		return pageSize;
@@ -25,6 +40,14 @@ public abstract class PageData<T> {
 
 	public void setPageNumber(Integer pageNumber) {
 		this.pageNumber = pageNumber;
+	}
+
+	public Long getTotal() {
+		return total;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
 	}
 
 	public String getSearchText() {
@@ -51,12 +74,12 @@ public abstract class PageData<T> {
 		this.sortOrder = sortOrder;
 	}
 
-	public List<T> getData() {
-		return data;
+	public List<T> getRows() {
+		return rows;
 	}
 
-	public void setData(List<T> data) {
-		this.data = data;
+	public void setRows(List<T> rows) {
+		this.rows = rows;
 	}
 
 }

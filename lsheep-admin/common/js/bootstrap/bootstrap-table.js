@@ -1403,6 +1403,7 @@
             html.push('</div>',
                 '<div class="pull-' + this.options.paginationHAlign + ' pagination">',
                 '<ul class="pagination' + sprintf(' pagination-%s', this.options.iconSize) + '">',
+                '<li class="page-first"><a href="#">' + this.options.paginationFirstText + '</a></li>',
                 '<li class="page-pre"><a href="#">' + this.options.paginationPreText + '</a></li>');
 
             if (this.totalPages < 5) {
@@ -1483,6 +1484,7 @@
 
             html.push(
                 '<li class="page-next"><a href="#">' + this.options.paginationNextText + '</a></li>',
+                '<li class="page-last"><a href="#">' + this.options.paginationLastText + '</a></li>',
                 '</ul>',
                 '</div>');
         }
