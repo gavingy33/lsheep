@@ -1358,16 +1358,19 @@
             html.push('<span class="page-list">');
 
             var pageNumber = [
-                    sprintf('<span class="btn-group %s">',
-                        this.options.paginationVAlign === 'top' || this.options.paginationVAlign === 'both' ?
-                            'dropdown' : 'dropup'),
+		    sprintf('<span class="btn-group btn-group-sm %s">',
+                        this.options.paginationVAlign === 'top' || this.options.paginationVAlign === 'both' ? 'dropdown' : 'dropup'),
+		    '<button type="button" class="btn ' +
+                    sprintf(' btn-%s', this.options.buttonsClass) +
+                    sprintf(' btn-%s', this.options.iconSize) +
+                    '">',
+                    $allSelected ? this.options.formatAllRows() : this.options.pageSize,
+                    '</button>',
                     '<button type="button" class="btn' +
                     sprintf(' btn-%s', this.options.buttonsClass) +
                     sprintf(' btn-%s', this.options.iconSize) +
                     ' dropdown-toggle" data-toggle="dropdown">',
-                    '<span class="page-size">',
-                    $allSelected ? this.options.formatAllRows() : this.options.pageSize,
-                    '</span>',
+                    '<span class="page-size"></span>',
                     ' <span class="caret"></span>',
                     '</button>',
                     '<ul class="dropdown-menu" role="menu">'
@@ -1392,6 +1395,9 @@
                     } else {
                         active = page === that.options.pageSize ? ' class="active"' : '';
                     }
+//                    if(page === 'All'){
+//                    	pageNumber.push('<li role="separator" class="divider"></li>');
+//                    }
                     pageNumber.push(sprintf('<li role="menuitem"%s><a href="#">%s</a></li>', active, page));
                 }
             });
@@ -1513,9 +1519,11 @@
             if (!this.options.paginationLoop) {
                 if (this.options.pageNumber === 1) {
                     $pre.addClass('disabled');
+                    $first.addClass('disabled');
                 }
                 if (this.options.pageNumber === this.totalPages) {
                     $next.addClass('disabled');
+                    $last.addClass('disabled');
                 }
             }
 

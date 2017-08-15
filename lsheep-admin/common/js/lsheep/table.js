@@ -1,14 +1,13 @@
-define([ "jquery", "bootstrap-table", "toastr" ], function($, table, toastr) {
+define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table, toastr, bootstrap) {
 
-
-	var table = function(tableConfig) {
+	var create = function(tableConfig) {
 		$(tableConfig.tabelName).bootstrapTable({
 			pagination : true,
 			paginationLoop : false,
 			sidePagination : "server",
 			pageNumber : 1,
-			pageSize : 2,
-			pageList : [ 10, 20, 50, "ALL" ],
+			pageSize : 10,
+			pageList : [ 10, 15, "All" ],
 			paginationFirstText : "首页",
 			paginationPreText : "上一页",
 			paginationNextText : "下一页",
@@ -24,7 +23,7 @@ define([ "jquery", "bootstrap-table", "toastr" ], function($, table, toastr) {
 			showColumns : true,
 
 			method : "GET",
-			url : "/config-restful/property/node",
+			url : tableConfig.url,
 			cache : false,
 			contentType : "application/x-www-form-urlencoded",
 			dataType : "json",
@@ -45,26 +44,13 @@ define([ "jquery", "bootstrap-table", "toastr" ], function($, table, toastr) {
 				}
 				return response.body;
 			},
-			columns : [ {
-				field : "code",
-				title : "属性编码",
-				"class" : ""
-			}, {
-				field : "name",
-				title : "属性名称"
-			} ]
+			columns : tableConfig.columns
 		});
 	};
 
-
-
-
-
-
-
 	return {
-		table (tableConfig) {
-			table(tableConfig);
+		create (tableConfig) {
+			create(tableConfig);
 		}
 	}
 });
