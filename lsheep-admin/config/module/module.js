@@ -34,7 +34,7 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 			action : function(event, treeId, treeNode) {
 				$panelIndex.empty().load("/config/module/module_add.html", function() {
 					require([ "/config/module/module_add.js" ], function(moduleAdd) {
-						moduleAdd.onload(treeNode);
+						moduleAdd.initValue(treeNode);
 					});
 				});
 			}

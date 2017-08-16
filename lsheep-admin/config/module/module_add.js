@@ -1,4 +1,4 @@
-define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toastr, tree) {
+define([ "jquery", "validator", "toastr", "tree", "form" ], function($, validator, toastr, tree, form) {
 
 	var initFormData = function(treeNode) {
 		$("#moduleAddForm #parentPath").val(treeNode.path);
@@ -54,10 +54,30 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 		});
 	};
 
+	var writeValue = function(treeNode) {
+		$.ajax({
+			url : "/config-restful/property/node/" + treeNode.id,
+			type : "GET",
+			success : function(response) {
+				var header = response.header;
+				if (header.statusCode != 200) {
+					toastr.error(header.message);
+					return;
+				}
+				var node = response.body;
+				$("#moduleAdd #moduleAddForm").writeForm(node);
+			}
+		});
+	}
+
 	return {
 		onload : function(treeNode) {
 			initFormData(treeNode);
 			initFormValidate();
+		},
+		initValue : function(treeNode) {
+			this.onload(treeNode);
+			writeValue(treeNode);
 		}
 	}
 });

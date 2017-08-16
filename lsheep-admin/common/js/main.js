@@ -18,7 +18,8 @@ requirejs.config({
 		"tree" : "lsheep/tree",
 		"validator" : "lsheep/validator",
 		"table" : "lsheep/table",
-		"order" : "lsheep/order"
+		"order" : "lsheep/order",
+		"form" : "lsheep/form"
 	},
 	shim : {
 		"avalon" : {
@@ -49,6 +50,10 @@ requirejs.config({
 		"table" : {
 			deps : [ "bootstrap-table", "table-language" ],
 			exports : "table"
+		},
+		"form" : {
+			deps : [ "jquery" ],
+			exports : "form"
 		}
 	},
 });
