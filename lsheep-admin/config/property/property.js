@@ -5,7 +5,9 @@ define([ "jquery", "toastr", "table" ], function($, toastr, table) {
 			tabelName : "#property #propertyTable",
 			url : "/config-restful/property/node",
 			queryParams : {
-				parentId : treeNode.id
+				parentId : treeNode.id,
+				withModule : false,
+				withProperty : true
 			},
 			columns : [ {
 				field : "code",

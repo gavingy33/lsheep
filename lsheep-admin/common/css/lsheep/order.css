@@ -1,0 +1,22 @@
+.order {
+	
+}
+
+.order .property-order {
+	cursor: pointer;
+}
+
+.order .property-order.disabled {
+	color: #b5acac;
+	cursor: not-allowed;
+}
+
+.order a {
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.order a i {
+	width: 14px;
+	height: 14px;
+}

@@ -39,12 +39,23 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 				toastr.info("delete" + treeNode.name);
 			}
 		};
+		var order = {
+			name : "排序",
+			action : function(event, treeId, treeNode) {
+				$panelIndex.empty().load("/config/module/module_order.html", function() {
+					require([ "/config/module/module_order.js" ], function(moduleOrder) {
+						moduleOrder.onload(treeNode);
+					});
+				});
+			}
+		};
 
 		var items = [];
 		if (treeNode.isModule) {
 			items.push(add);
 			items.push(modify);
 			items.push(del);
+			items.push(order);
 		}
 		return items;
 	}

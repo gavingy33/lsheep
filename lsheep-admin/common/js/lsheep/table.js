@@ -44,7 +44,8 @@ define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table
 				}
 				return response.body;
 			},
-			columns : tableConfig.columns
+			columns : tableConfig.columns,
+			onLoadSuccess : tableConfig.onLoadSuccess
 		});
 	};
 

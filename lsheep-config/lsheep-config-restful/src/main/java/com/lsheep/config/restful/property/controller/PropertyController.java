@@ -198,7 +198,8 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setParentId(parentId);
 			queryPropertyReqDto.setChild(false);
 			queryPropertyReqDto.setAll(false);
-			queryPropertyReqDto.setWithProperty(true);
+			queryPropertyReqDto.setWithModule(propertyPageQuery.getWithModule());
+			queryPropertyReqDto.setWithProperty(propertyPageQuery.getWithProperty());
 			queryPropertyReqDto.setPageQuery(propertyPageQuery);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
 			ResponseHeader responseHeader = transferResponse.getHeader();
