@@ -6,11 +6,6 @@
 	cursor: pointer;
 }
 
-.order .property-order.disabled {
-	color: #b5acac;
-	cursor: not-allowed;
-}
-
 .order a {
 	margin-left: 2px;
 	margin-right: 2px;
@@ -19,4 +14,16 @@
 .order a i {
 	width: 14px;
 	height: 14px;
+}
+
+.order a hover {
+	color: #0088fd;
+	font-size: 1.33333333em;
+	line-height: 0.75em;
+	vertical-align: -15%;
+}
+
+.order .property-order.disabled {
+	color: #b5acac;
+	cursor: not-allowed;
 }

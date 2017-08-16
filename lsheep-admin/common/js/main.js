@@ -17,7 +17,8 @@ requirejs.config({
 		"mmRouter" : "avalon/mmRouter",
 		"tree" : "lsheep/tree",
 		"validator" : "lsheep/validator",
-		"table" : "lsheep/table"
+		"table" : "lsheep/table",
+		"order" : "lsheep/order"
 	},
 	shim : {
 		"avalon" : {

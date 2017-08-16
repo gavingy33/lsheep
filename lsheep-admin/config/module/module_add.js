@@ -4,7 +4,7 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 		$("#moduleAddForm #parentPath").val(treeNode.path);
 		$("#moduleAddForm #parentId").val(treeNode.id);
 
-		var pathPrefix = treeNode.path + "/";
+		var pathPrefix = treeNode.path + " /";
 		$path = $("#moduleAddForm #path").val(pathPrefix);
 		$("#moduleAddForm #code").bind("input", function() {
 			$path.val(pathPrefix + this.value);
@@ -26,6 +26,13 @@ define([ "jquery", "validator", "toastr", "tree" ], function($, validator, toast
 					validators : {
 						notEmpty : {
 							message : "请输入栏目名称"
+						}
+					}
+				},
+				weight : {
+					validators : {
+						digits : {
+							message : "请输入非负整数"
 						}
 					}
 				}

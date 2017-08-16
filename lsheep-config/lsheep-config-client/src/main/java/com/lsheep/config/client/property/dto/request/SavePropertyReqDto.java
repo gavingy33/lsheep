@@ -8,6 +8,7 @@ public class SavePropertyReqDto {
 	private String code;
 	private String name;
 	private String context;
+	private Integer weight;
 
 	public Boolean getIsModule() {
 		return isModule;
@@ -55,6 +56,14 @@ public class SavePropertyReqDto {
 
 	public void setContext(String context) {
 		this.context = context;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
 
 }

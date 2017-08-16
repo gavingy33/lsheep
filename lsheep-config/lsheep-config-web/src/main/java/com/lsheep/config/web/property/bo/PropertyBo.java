@@ -12,4 +12,6 @@ public interface PropertyBo {
 
 	void saveProperty(SProperty sProperty);
 
+	void updateProperty(SProperty sProperty);
+
 }

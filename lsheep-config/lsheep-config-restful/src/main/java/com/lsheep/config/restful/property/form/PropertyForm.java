@@ -5,6 +5,7 @@ public class PropertyForm {
 	private Integer parentId;
 	private String code;
 	private String name;
+	private Integer weight;
 
 	public Integer getParentId() {
 		return parentId;
@@ -28,6 +29,14 @@ public class PropertyForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
 
 }

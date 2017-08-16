@@ -12,6 +12,7 @@ public class PropertyNode {
 	private String name;
 	private String hash;
 	private String context;
+	private Integer weight;
 	private List<PropertyNode> children;
 
 	public Integer getPropertyId() {
@@ -76,6 +77,14 @@ public class PropertyNode {
 
 	public void setContext(String context) {
 		this.context = context;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
 	}
 
 	public List<PropertyNode> getChildren() {

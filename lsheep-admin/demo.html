@@ -8,36 +8,24 @@
 <link rel="stylesheet" href="/common/css/bootstrap/font-awesome.css" />
 <script type="text/javascript" src="/common/js/jquery/jquery.js"></script>
 <script type="text/javascript" src="/common/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("[data-toggle='tooltip']").tooltip();
+	});
+</script>
 </head>
 <body>
 
-<div class="btn-group">
-      <button type="button" class="btn btn-default">Default</button>
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-</div><!-- /btn-group -->
-
-<div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Default <span class="caret"></span>
-</button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-    </div><!-- /btn-group -->
+	<h4>提示工具（Tooltip）插件 - 按钮</h4>
+	<a data-toggle="tooltip" title="默认的 Tooltip">默认的 Tooltip</a>
+	<a data-toggle="tooltip" data-placement="left" title="左侧的 Tooltip">左侧的
+		Tooltip</a>
+	<a data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">顶部的
+		Tooltip</a>
+	<a data-toggle="tooltip" data-placement="bottom" title="底部的 Tooltip">底部的
+		Tooltip</a>
+	<a data-toggle="tooltip" data-placement="right" title="右侧的 Tooltip">右侧的
+		Tooltip</a>
 
 </body>
 </html>

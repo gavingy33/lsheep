@@ -31,7 +31,13 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 		};
 		var modify = {
 			name : "修改",
-			action : function(event, treeId, treeNode) {}
+			action : function(event, treeId, treeNode) {
+				$panelIndex.empty().load("/config/module/module_add.html", function() {
+					require([ "/config/module/module_add.js" ], function(moduleAdd) {
+						moduleAdd.onload(treeNode);
+					});
+				});
+			}
 		};
 		var del = {
 			name : "删除",
@@ -40,11 +46,11 @@ define([ "jquery", "tree", "table", "toastr" ], function($, tree, table, toastr)
 			}
 		};
 		var order = {
-			name : "排序",
+			name : "详情",
 			action : function(event, treeId, treeNode) {
-				$panelIndex.empty().load("/config/module/module_order.html", function() {
-					require([ "/config/module/module_order.js" ], function(moduleOrder) {
-						moduleOrder.onload(treeNode);
+				$panelIndex.empty().load("/config/module/module_info.html", function() {
+					require([ "/config/module/module_info.js" ], function(moduleInfo) {
+						moduleInfo.onload(treeNode);
 					});
 				});
 			}

@@ -10,4 +10,6 @@ public interface PropertyDao {
 
 	int insert(SProperty sProperty);
 
+	void update(SProperty sProperty);
+
 }

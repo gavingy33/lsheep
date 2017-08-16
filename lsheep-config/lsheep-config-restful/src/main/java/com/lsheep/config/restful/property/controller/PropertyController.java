@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,8 +27,11 @@ import com.lsheep.common.core.restful.dto.response.RestResponse;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.ResponseHeader;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
+import com.lsheep.config.client.property.dto.request.BatchUpdateReqDto;
+import com.lsheep.config.client.property.dto.request.Property;
 import com.lsheep.config.client.property.dto.request.QueryPropertyReqDto;
 import com.lsheep.config.client.property.dto.request.SavePropertyReqDto;
+import com.lsheep.config.client.property.dto.response.BatchUpdateResDto;
 import com.lsheep.config.client.property.dto.response.PropertyNode;
 import com.lsheep.config.client.property.dto.response.QueryPropertyResDto;
 import com.lsheep.config.client.property.dto.response.SavePropertyResDto;
@@ -64,7 +68,7 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setAll(false);
 			queryPropertyReqDto.setWithModule(true);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
-			ResponseHeader responseHeader = transferResponse.getHeader();
+			ResponseHeader responseHeader = transferResponse.header();
 			if (!responseHeader.success()) {
 				throw new BizException(responseHeader.getMessage());
 			}
@@ -99,7 +103,7 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setChild(false);
 			queryPropertyReqDto.setAll(false);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
-			ResponseHeader responseHeader = transferResponse.getHeader();
+			ResponseHeader responseHeader = transferResponse.header();
 			if (!responseHeader.success()) {
 				throw new BizException(responseHeader.getMessage());
 			}
@@ -165,6 +169,7 @@ public class PropertyController extends BaseControllerImpl {
 			savePropertyReqDto.setParentId(parentId);
 			savePropertyReqDto.setCode(code);
 			savePropertyReqDto.setName(name);
+			savePropertyReqDto.setWeight(propertyForm.getWeight());
 			TransferResponse<SavePropertyResDto> transferResponse = propertyService.saveProperty(transferRequest);
 			ResponseHeader responseHeader = transferResponse.header();
 			if (!responseHeader.success()) {
@@ -202,7 +207,7 @@ public class PropertyController extends BaseControllerImpl {
 			queryPropertyReqDto.setWithProperty(propertyPageQuery.getWithProperty());
 			queryPropertyReqDto.setPageQuery(propertyPageQuery);
 			TransferResponse<QueryPropertyResDto> transferResponse = propertyService.queryProperty(transferRequest);
-			ResponseHeader responseHeader = transferResponse.getHeader();
+			ResponseHeader responseHeader = transferResponse.header();
 			if (!responseHeader.success()) {
 				throw new BizException(responseHeader.getMessage());
 			}
@@ -214,6 +219,33 @@ public class PropertyController extends BaseControllerImpl {
 			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
 			restHeader.setMessage(e.getMessage());
 			logger.error("query child error", e);
+		}
+		return response;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/module/order", method = RequestMethod.POST)
+	public RestResponse<?> order(@RequestBody List<Property> properties) {
+		RestResponse<?> response = new RestResponse<>();
+		RestHeader restHeader = response.getHeader();
+		try {
+			ParamsCheck.notEmpty("propertyNodes can't be empty", properties);
+			for (Property property : properties) {
+				ParamsCheck.notNull("propertyId can't be null", property.getPropertyId());
+			}
+			TransferRequest<BatchUpdateReqDto> transferRequest = new TransferRequest<>(BatchUpdateReqDto.class);
+			BatchUpdateReqDto batchUpdateReqDto = transferRequest.model();
+			batchUpdateReqDto.setProperties(properties);
+			transferRequest.setModel(batchUpdateReqDto);
+			TransferResponse<BatchUpdateResDto> transferResponse = propertyService.batchUpdate(transferRequest);
+			ResponseHeader responseHeader = transferResponse.header();
+			if (!responseHeader.success()) {
+				throw new BizException(responseHeader.getMessage());
+			}
+		} catch (Exception e) {
+			restHeader.setStatusCode(StatusCode.SERVER_ERROR);
+			restHeader.setMessage(e.getMessage());
+			logger.error("update order error", e);
 		}
 		return response;
 	}

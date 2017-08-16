@@ -457,6 +457,9 @@
         },
         onResetView: function () {
             return false;
+        },
+        onShowColumns: function(){
+        	return false;
         }
     };
 
@@ -1165,6 +1168,7 @@
 
                 that.toggleColumn($(this).val(), $this.prop('checked'), false);
                 that.trigger('column-switch', $(this).data('field'), $this.prop('checked'));
+                that.options.onShowColumns();
             });
         }
 

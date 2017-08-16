@@ -6,8 +6,8 @@ define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table
 			paginationLoop : false,
 			sidePagination : "server",
 			pageNumber : 1,
-			pageSize : 10,
-			pageList : [ 10, 15, "All" ],
+			pageSize : tableConfig.pageSize || 10,
+			pageList : tableConfig.pageList || [ 10, 15, "All" ],
 			paginationFirstText : "首页",
 			paginationPreText : "上一页",
 			paginationNextText : "下一页",
@@ -21,6 +21,7 @@ define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table
 			queryParamsType : "",
 			clickToSelect : true,
 			showColumns : true,
+			onShowColumns : tableConfig.onShowColumns,
 
 			method : "GET",
 			url : tableConfig.url,
@@ -45,13 +46,34 @@ define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table
 				return response.body;
 			},
 			columns : tableConfig.columns,
-			onLoadSuccess : tableConfig.onLoadSuccess
+			onLoadSuccess : tableConfig.onLoadSuccess,
 		});
+	};
+
+	var getData = function(tableConfig) {
+		var $table = $(tableConfig.tabelName);
+		var prop = [];
+		$("thead tr", $table).first().find("th").each(function() {
+			prop.push($(this).attr("data-field"));
+		});
+
+		var data = [];
+		$("tbody tr", $table).each(function() {
+			var value = {};
+			$("td", $(this)).each(function(i, element) {
+				value[prop[i]] = $(this).text();
+			});
+			data.push(value);
+		});
+		return data;
 	};
 
 	return {
 		create (tableConfig) {
 			create(tableConfig);
+		},
+		getData (tableConfig) {
+			return getData(tableConfig);
 		}
 	}
 });

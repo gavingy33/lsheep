@@ -45,8 +45,9 @@ define([ "jquery", "ztree", "toastr" ], function($, ztree, toastr) {
 			if (!treeNode) {
 				return;
 			}
-			// 选中节点
+			// 选中并展开节点
 			getTreeObj(treeConfig).selectNode(treeNode);
+			expandNode(treeConfig);
 			var menus = treeConfig.rigthClickMenus(treeNode);
 			if (!menus || menus.lenght == 0) {
 				return;

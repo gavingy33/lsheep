@@ -33,4 +33,9 @@ public class PropertyDaoImpl extends BaseDaoImpl implements PropertyDao {
 		return sPropertyMapper.insertSelective(sProperty);
 	}
 
+	@Override
+	public void update(SProperty sProperty) {
+		sPropertyMapper.updateByPrimaryKeySelective(sProperty);
+	}
+
 }

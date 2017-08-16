@@ -20,8 +20,11 @@ import com.lsheep.common.core.page.PageData;
 import com.lsheep.common.core.page.PageQuery;
 import com.lsheep.common.webservice.dto.request.TransferRequest;
 import com.lsheep.common.webservice.dto.response.TransferResponse;
+import com.lsheep.config.client.property.dto.request.BatchUpdateReqDto;
+import com.lsheep.config.client.property.dto.request.Property;
 import com.lsheep.config.client.property.dto.request.QueryPropertyReqDto;
 import com.lsheep.config.client.property.dto.request.SavePropertyReqDto;
+import com.lsheep.config.client.property.dto.response.BatchUpdateResDto;
 import com.lsheep.config.client.property.dto.response.PropertyNode;
 import com.lsheep.config.client.property.dto.response.QueryPropertyResDto;
 import com.lsheep.config.client.property.dto.response.SavePropertyResDto;
@@ -150,6 +153,7 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 		sProperty.setParentId(parentId);
 		sProperty.setPath(path);
 		sProperty.setCode(code);
+		sProperty.setWeight(savePropertyReqDto.getWeight());
 		sProperty.setName(name);
 		sProperty.setContext(context);
 		sProperty.setHash(PropertyUtils.hash(context));
@@ -157,6 +161,25 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 
 		SavePropertyResDto savePropertyResDto = response.model();
 		BeanUtils.copyProperties(sProperty, savePropertyResDto);
+		return response;
+	}
+
+	@Override
+	public TransferResponse<BatchUpdateResDto> batchUpdate(TransferRequest<BatchUpdateReqDto> request) {
+		TransferResponse<BatchUpdateResDto> response = new TransferResponse<>(BatchUpdateResDto.class);
+		BatchUpdateReqDto batchUpdateReqDto = request.model();
+		ParamsCheck.notNull("batchUpdateReqDto can't be null", batchUpdateReqDto);
+		List<Property> properties = batchUpdateReqDto.getProperties();
+		ParamsCheck.notEmpty("properties can't be null", properties);
+
+		for (Property property : properties) {
+			Integer propertyId = property.getPropertyId();
+			ParamsCheck.notNull("propertyId can't be null", propertyId);
+			SProperty sProperty = new SProperty();
+			sProperty.setPropertyId(propertyId);
+			sProperty.setWeight(property.getWeight());
+			propertyBo.updateProperty(sProperty);
+		}
 		return response;
 	}
 
