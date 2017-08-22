@@ -4,6 +4,7 @@ define([ "jquery", "toastr", "table" ], function($, toastr, table) {
 		table.create({
 			tabelName : "#property #propertyTable",
 			url : "/config-restful/property/node",
+			toolbar : "#propertyToolbar",
 			queryParams : {
 				parentId : treeNode.id,
 				withModule : false,
@@ -20,9 +21,22 @@ define([ "jquery", "toastr", "table" ], function($, toastr, table) {
 		});
 	};
 
+	function initToolbar(treeNode) {
+		$("#propertyToolbar #add").click(function() {
+			$("#property #propertyPanel").load("/config/property/property_add.html", function() {
+				require([ "/config/property/property_add.js" ], function(propertyAdd) {
+					propertyAdd.onload(treeNode);
+				});
+			});
+
+		});
+	}
+
+
 	return {
 		onload : function(treeNode) {
 			createTable(treeNode);
+			initToolbar(treeNode);
 		}
 	}
 });

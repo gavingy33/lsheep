@@ -12,7 +12,7 @@ define([ "jquery", "bootstrap-table", "toastr", "bootstrap" ], function($, table
 			paginationPreText : "上一页",
 			paginationNextText : "下一页",
 			paginationLastText : "尾页",
-			//			toolbar : "#toolbar",
+			toolbar : tableConfig.toolbar,
 			undefinedText : "-",
 			striped : true,
 			search : true,

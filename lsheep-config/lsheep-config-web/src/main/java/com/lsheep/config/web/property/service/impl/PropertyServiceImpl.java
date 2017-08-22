@@ -24,10 +24,12 @@ import com.lsheep.config.client.property.dto.request.BatchUpdateReqDto;
 import com.lsheep.config.client.property.dto.request.Property;
 import com.lsheep.config.client.property.dto.request.QueryPropertyReqDto;
 import com.lsheep.config.client.property.dto.request.SavePropertyReqDto;
+import com.lsheep.config.client.property.dto.request.UpdatePropertyReqDto;
 import com.lsheep.config.client.property.dto.response.BatchUpdateResDto;
 import com.lsheep.config.client.property.dto.response.PropertyNode;
 import com.lsheep.config.client.property.dto.response.QueryPropertyResDto;
 import com.lsheep.config.client.property.dto.response.SavePropertyResDto;
+import com.lsheep.config.client.property.dto.response.UpdatePropertyResDto;
 import com.lsheep.config.client.property.service.PropertyService;
 import com.lsheep.config.database.model.SProperty;
 import com.lsheep.config.web.property.bo.PropertyBo;
@@ -181,6 +183,12 @@ public class PropertyServiceImpl extends BaseServiceImpl implements PropertyServ
 			propertyBo.updateProperty(sProperty);
 		}
 		return response;
+	}
+
+	@Override
+	public TransferResponse<UpdatePropertyResDto> updateProperty(TransferRequest<UpdatePropertyReqDto> request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
